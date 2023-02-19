@@ -13,7 +13,7 @@ export default function Search() {
             <div className='seperator'></div>
             <p className='guests'>Add guests</p>
             <div className='search-icon'>
-                <BiSearch />
+                <BiSearch fontSize={'16px'} />
             </div>
         </div>
     )
