@@ -4,8 +4,7 @@ import Navbar from './ts/pages/Home/cmps/Navbar'
 
 export default function App() {
     return (
-        <div className='main-layout app'>
-            <Navbar />
+        <div className='app'>
             <Home />
         </div>
     )
