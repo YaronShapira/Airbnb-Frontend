@@ -2,13 +2,15 @@
     display: grid;
     grid-template-columns: 9fr 1.2fr;
     font-family: Cereal-Medium;
-    padding-top: 2.2rem;
+    padding-top: 1.5rem;
     .filter-places {
         display: flex;
         gap: 2.5rem;
         font-size: 12px;
+        align-items: center;
     }
     .btns {
+        justify-self: flex-end;
         display: flex;
         gap: 1rem;
         align-items: center;
