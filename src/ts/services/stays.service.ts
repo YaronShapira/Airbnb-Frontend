@@ -1,10 +1,10 @@
-import { Filter } from '../interfaces/filter-interface'
+import { IFilter } from '../interfaces/filter-interface'
 
 export const stayService = {
     getFilters,
 }
 
-function getFilters(): Filter[] {
+function getFilters(): IFilter[] {
     return [
         {
             filter: 'Castles',

@@ -1,3 +1,39 @@
 .filters {
-    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 9fr 1.2fr;
+    font-family: Cereal-Medium;
+    padding-top: 2.2rem;
+    .filter-places {
+        display: flex;
+        gap: 2.5rem;
+        font-size: 12px;
+    }
+    .btns {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+        button {
+            font-size: 12px;
+            background: transparent;
+            border: none;
+            border: 1px solid #ddd;
+        }
+        .right {
+            border-radius: 50%;
+            padding: 0.3rem;
+        }
+        .more-filters {
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            img {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
 }

@@ -1,0 +1,21 @@
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #717171;
+    img {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 0.4rem;
+        opacity: 0.64;
+    }
+
+    &:hover {
+        img {
+            opacity: 1;
+        }
+        color: black;
+    }
+}
