@@ -4,5 +4,41 @@
         border-radius: 12px;
         aspect-ratio: 1;
         object-fit: cover;
+        margin-bottom: 0.6rem;
+    }
+    .details {
+        color: #717171;
+        font-size: 14px;
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .stars {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.3rem;
+            }
+        }
+        .address {
+            color: #222222;
+            font-family: 'Cereal-Bold', sans-serif;
+            font-size: 15px;
+        }
+        .price {
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: #222222;
+            margin-top: 6px;
+            font-family: 'Cereal-Medium', sans-serif;
+
+            .prefix {
+                color: rgb(34, 34, 34);
+                font-family: 'Cereal-Book', sans-serif;
+                font-size: 14px;
+            }
+        }
     }
 }
