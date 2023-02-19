@@ -25,7 +25,7 @@ function _createStays() {
     const stays = utilService.loadFromStorage(STORAGE_KEY)
     if (!stays || !stays.length) {
         let stays: any = minifiedStays
-        stays = stays.map((stay: { _id: string }) => {
+        stays = stays.map((stay: any) => {
             stay._id = utilService.makeId()
             return stay
         })
