@@ -53,7 +53,7 @@
     transform-origin: 0% 50%;
 
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 4fr 1fr 1fr 1fr 2fr;
     align-items: center;
 
     > * {
@@ -89,6 +89,7 @@
             outline: none;
             color: #717171;
             font-size: 14px;
+            margin-left: -2px;
 
             &::placeholder {
                 color: #717171;
@@ -96,12 +97,13 @@
             }
         }
     }
+
     .search-btn {
         // width: 111px;
         border-radius: 24px;
         display: flex;
         background: $brand-gradient;
-        padding: 0.7rem 0.1rem;
+        padding: 0.7rem 0rem;
         border: none;
         color: white;
         background-size: 200% 200%;
@@ -114,6 +116,33 @@
         img {
             width: 14px;
             height: 14px;
+        }
+    }
+}
+
+.experience-type {
+    background: white;
+    display: grid;
+    display: flex;
+    gap: 2rem;
+    position: absolute;
+    z-index: 15;
+    top: -25%;
+    left: 50%;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform: translateX(-50%);
+    &.shown {
+        top: 2.5%;
+    }
+    button {
+        background: white;
+        border: none;
+        outline: none;
+        padding: 0;
+        padding-bottom: 0.4rem;
+
+        &.active {
+            border-bottom: 2px #222222 solid;
         }
     }
 }

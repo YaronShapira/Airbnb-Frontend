@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { HiSearch } from 'react-icons/hi'
 import DarkOverlay from '../../../cmps/DarkOverlay'
@@ -9,9 +10,16 @@ interface Props {
 }
 
 export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) {
+    const [selectedExperience, setSelectedExperience] = useState<string>('Stays')
     return (
         <>
-            {isSearchOpen && <DarkOverlay onClickFunc={onToggleSearch} />}
+            <div className={`experience-type ${isSearchOpen && 'shown'}`}>
+                <button className={`${selectedExperience === 'Stays' ? 'active' : ''}`}>Stays</button>
+                <button className={`${selectedExperience === 'Experiences' ? 'active' : ''}`}>Experiences</button>
+                <button className={`${selectedExperience === 'Online Experiences' ? 'active' : ''}`}>
+                    Online Experiences
+                </button>
+            </div>
             <div className={`search-expanded ${isSearchOpen && 'shown'}`}>
                 <form className='search-expanded-filter'>
                     <label className='where'>
@@ -35,6 +43,7 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
                     </button>
                 </form>
             </div>
+            {isSearchOpen && <DarkOverlay onClickFunc={onToggleSearch} />}
         </>
     )
 }
