@@ -1,3 +1,5 @@
+![Airbnb Clone Screenshot](https://res.cloudinary.com/yaronshapira-com/image/upload/v1676882873/Airbnb/airbnbscreenshot_fzcfno.png)
+
 # Airbnb Clone
 
 > Note: This project is a work in progress and not yet ready for production use.
