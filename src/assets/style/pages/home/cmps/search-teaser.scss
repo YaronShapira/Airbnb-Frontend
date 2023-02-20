@@ -1,4 +1,4 @@
-.search {
+.search-teaser {
     cursor: pointer;
     border: 1px solid #dddddd;
     border-radius: 40px;
@@ -15,14 +15,23 @@
     flex-direction: row;
     align-items: center;
 
+    position: relative;
+    z-index: 4;
+
     display: flex;
     flex: 0 1 auto;
-    // -webkit-transform: scale(1) translateY(0) translateZ(0) perspective(1000px);
-    // transform: scale(1) translateY(0) translateZ(0) perspective(1000px);
-    // -webkit-transform-origin: 50% 50%;
-    // transform-origin: 50% 50%;
-    // transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
 
+    transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transform: scale(1) translateY(0px) translateZ(0px) perspective(1000px);
+    transform-origin: 50% 50%;
+
+    &-hide {
+        transition: all 0.75s cubic-bezier(0.075, 0.82, 0.165, 1),
+            opacity 0.15s cubic-bezier(0.075, 0.82, 0.165, 1) 0.15s;
+        transform: scale(1.5) translateY(66px) translateZ(66px) perspective(1000px);
+        opacity: 0;
+        pointer-events: none;
+    }
     &:hover {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
     }

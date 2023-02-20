@@ -3,3 +3,13 @@ $ui-brand-color: #222222;
 $navbar-height: 80px;
 $layout-padding: 5rem;
 $text-muted: #9d9d9d;
+
+$brand-gradient: radial-gradient(
+    circle at center,
+    #ff385c 0%,
+    #e61e4d 27.5%,
+    #e31c5f 40%,
+    #d70466 57.5%,
+    #bd1e59 75%,
+    #bd1e59 100%
+);

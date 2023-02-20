@@ -4,9 +4,14 @@ import FilterDatePicker from './FilterDatePicker'
 import FilterGuests from './FilterGuests'
 import { FilterLocation } from './FilterLocation'
 
-export default function Search() {
+interface Props {
+    onToggleSearch: () => void
+    isSearchOpen: boolean
+}
+
+export default function SearchTeaser({ onToggleSearch, isSearchOpen }: Props) {
     return (
-        <div className='search'>
+        <div className={`search-teaser ${isSearchOpen ? 'search-teaser-hide' : ''}`} onClick={onToggleSearch}>
             <p>Anywhere</p>
             <div className='seperator'></div>
             <p>Any week</p>

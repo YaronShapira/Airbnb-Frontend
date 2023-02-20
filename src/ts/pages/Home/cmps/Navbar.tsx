@@ -1,15 +1,24 @@
+import { useState, useRef } from 'react'
 import { RiGlobalLine } from 'react-icons/ri'
-import { IoMdMenu } from 'react-icons/io'
-import { FaUserCircle } from 'react-icons/fa'
 import AppLogo from '../../../cmps/AppLogo'
-import Search from './Search'
+import SearchTeaser from './SearchTeaser'
+import SearchExpanded from './SearchExpanded'
+import { FilterLocation } from './FilterLocation'
+import { BiSearch } from 'react-icons/bi'
+import FilterGuests from './FilterGuests'
+import FilterDatePicker from './FilterDatePicker'
+import DarkOverlay from '../../../cmps/DarkOverlay'
 
 export default function Navbar() {
+    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
+    function onToggleSearch(): void {
+        setIsSearchOpen(prevState => !prevState)
+    }
     return (
         <>
-            <nav className='navbar'>
+            <nav className={`navbar ${isSearchOpen ? 'expanded' : ''}`}>
                 <AppLogo />
-                <Search />
+                <SearchTeaser onToggleSearch={onToggleSearch} isSearchOpen={isSearchOpen} />
                 <div className='user-section'>
                     <button className='airbnb-cta'>Airbnb your home</button>
                     <button className='language'>
@@ -27,6 +36,10 @@ export default function Navbar() {
                     </button>
                 </div>
             </nav>
+            <div className={`search-expanded ${isSearchOpen && 'shown'}`}>
+                <form className='search-expanded-filter'></form>
+            </div>
+            {isSearchOpen && <DarkOverlay onClickFunc={setIsSearchOpen} />}
             <div className='full-bleed border'></div>
         </>
     )
