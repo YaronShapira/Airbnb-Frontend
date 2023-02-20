@@ -6,8 +6,9 @@
 @import './base/app.scss';
 @import './base/helpers.scss';
 
+// COMMON
+@import './cmps/dark-overlay.scss';
+
 // PAGES
 @import './pages/home/home.scss';
 
-// COMMON
-@import './cmps/dark-overlay.scss';

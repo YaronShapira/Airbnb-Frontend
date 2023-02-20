@@ -1,8 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
-import FilterDatePicker from './FilterDatePicker'
-import FilterGuests from './FilterGuests'
-import { FilterLocation } from './FilterLocation'
 
 interface Props {
     onToggleSearch: () => void
