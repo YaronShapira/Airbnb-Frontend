@@ -1,5 +1,7 @@
 # Airbnb Clone
 
+> Note: This project is a work in progress and not yet ready for production use.
+
 This project is an Airbnb clone, where users can search for and book rental properties.
 
 ## Project Features
@@ -12,10 +14,10 @@ This project is an Airbnb clone, where users can search for and book rental prop
 
 ## Technologies Used
 
-This project was built using the following technologies:
+This project is going to be built using the following technologies:
 
 -   **Frontend:** React, Redux, React Router, Styled Components, Axios, React Dates, Stripe
--   **Backend:** Node.js, Express, MongoDB, Mongoose, Passport, JWT, SendGrid
+-   **Backend:** Node.js, Express, MongoDB, Mongoose
 
 ## Demo
 
@@ -23,25 +25,17 @@ To see a live demo of the project, please visit [INSERT LINK TO DEMO]. You can t
 
 ## Screenshots
 
-[INSERT SCREENSHOTS OF PROJECT]
-
 ## Installation
 
 To run the project locally, follow these steps:
 
-1. Clone the repository: `git clone [INSERT REPOSITORY URL]`
+1. Clone the repository: `git clone https://github.com/YaronShapira/Airbnb-Frontend`
 2. Install dependencies: `npm install`
 3. Start the backend server: `npm run server`
 4. Start the frontend server: `npm start`
 
 The website should be available at `http://localhost:3000/`.
 
-## Contributors
-
--   [INSERT CONTRIBUTOR NAMES]
-
-We welcome contributions from the community! If you'd like to contribute, please create a pull request and we'll review it as soon as possible.
-
 ## Contact
 
-If you have any questions or feedback about the project, please feel free to reach out to us at [INSERT CONTACT INFORMATION].
+If you have any questions or feedback about the project, please feel free to reach out at **yaronshapiradev@gmail.com**.
