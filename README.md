@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# Airbnb Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an Airbnb clone, where users can search for and book rental properties.
 
-## Available Scripts
+## Project Features
 
-In the project directory, you can run:
+-   **Search:** Users can search for rental properties based on location and dates. The search feature provides a list of matching properties along with filters to narrow down the results based on preferences.
+-   **Property Details:** Users can view detailed information about each property, including photos, descriptions, reviews, and availability calendar.
+-   **Booking:** Users can book rental properties directly through the website by selecting available dates and submitting payment information. The website then sends a confirmation email to the user and the property owner.
+-   **Favorites:** Users can add rental properties to a list of favorites for easy access later. The list is saved to the user's account and can be managed by the user.
+-   **Messaging:** Users can send messages to the property owner through the website for any questions or concerns regarding the rental property.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project was built using the following technologies:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-   **Frontend:** React, Redux, React Router, Styled Components, Axios, React Dates, Stripe
+-   **Backend:** Node.js, Express, MongoDB, Mongoose, Passport, JWT, SendGrid
 
-### `npm test`
+## Demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To see a live demo of the project, please visit [INSERT LINK TO DEMO]. You can try out the search and booking features with sample properties.
 
-### `npm run build`
+## Screenshots
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[INSERT SCREENSHOTS OF PROJECT]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To run the project locally, follow these steps:
 
-### `npm run eject`
+1. Clone the repository: `git clone [INSERT REPOSITORY URL]`
+2. Install dependencies: `npm install`
+3. Start the backend server: `npm run server`
+4. Start the frontend server: `npm start`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The website should be available at `http://localhost:3000/`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributors
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+-   [INSERT CONTRIBUTOR NAMES]
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+We welcome contributions from the community! If you'd like to contribute, please create a pull request and we'll review it as soon as possible.
 
-## Learn More
+## Contact
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+If you have any questions or feedback about the project, please feel free to reach out to us at [INSERT CONTACT INFORMATION].

@@ -25,6 +25,7 @@ function _createStays() {
     const stays = utilService.loadFromStorage(STORAGE_KEY)
     if (!stays || !stays.length) {
         let stays: any = minifiedStays
+        stays.sort(() => Math.random() - 0.5)
         stays = stays.map((stay: any) => {
             stay._id = utilService.makeId()
             return stay
