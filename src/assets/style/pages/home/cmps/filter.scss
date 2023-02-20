@@ -3,15 +3,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 0.45rem;
     cursor: pointer;
     color: #717171;
     padding-top: 0.65rem;
     padding-bottom: 0.65rem;
 
+    p {
+        white-space: nowrap;
+    }
+
     img {
         width: 24px;
         height: 24px;
-        margin-bottom: 0.45rem;
+        // margin-bottom: 0.45rem;
         opacity: 0.64;
     }
     &.selected {
