@@ -7,11 +7,12 @@
     align-items: center;
     width: 100%;
     background: white !important;
-    z-index: 4;
+    z-index: -1;
     transition: top 0.3s ease;
     perspective: 1000px;
     perspective: 100dvw;
     &.shown {
+        z-index: 4;
         top: 0px;
         background: black;
 

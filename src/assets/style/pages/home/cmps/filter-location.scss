@@ -1,0 +1,39 @@
+.filter-location {
+    padding-top: 40px;
+    padding-left: 55px;
+    padding-bottom: 55px;
+    padding-right: 55px;
+    .regions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem 1rem;
+
+        .region {
+            p {
+                font-weight: 100;
+                font-size: 14px;
+                margin-top: 0.5rem;
+                color: $ui-brand-color;
+                font-family: 'Cereal-Book', sans-serif;
+            }
+        }
+    }
+    h4 {
+        font-size: 14px;
+        font-family: 'Cereal-Bold', sans-serif;
+        margin-bottom: 28px;
+    }
+    .region-img {
+        width: 122px;
+        height: 122px;
+        border: 1px solid rgb(221, 221, 221);
+        border-radius: 10px;
+        cursor: pointer;
+        transition-property: -ms-transform, -webkit-transform, transform, background-color, border-color !important;
+        transition-duration: 0.15s !important;
+        transition-timing-function: ease-in-out !important;
+        &:hover {
+            border-color: rgb(0, 0, 0);
+        }
+    }
+}

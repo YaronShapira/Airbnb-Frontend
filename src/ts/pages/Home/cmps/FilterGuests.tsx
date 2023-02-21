@@ -1,3 +1,3 @@
 export default function FilterGuests() {
-    return <section>Hello from FilterGuests</section>
+    return <section className='filter-module filter-guests'>Hello from FilterGuests</section>
 }

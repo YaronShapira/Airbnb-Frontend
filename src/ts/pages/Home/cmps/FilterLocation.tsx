@@ -16,23 +16,14 @@ export function FilterLocation({ onSelectRegion, filterBy }: any) {
     ]
 
     return (
-        <section className='filter-modal filter-location'>
+        <section className='filter-module filter-location'>
             <h4 className='title'>Search by region</h4>
             <div className='regions'>
                 {regions.map(r => {
                     return (
-                        <div
-                            onClick={() => {
-                                onSelectRegion(r.label)
-                            }}
-                            key={r.id}
-                            className='region'
-                        >
-                            <div
-                                className={`region-img ${filterBy.whereTo === r.label ? 'active' : ''}`}
-                                style={{ backgroundImage: `url("${r.img}")` }}
-                            ></div>
-                            <div>{r.label}</div>
+                        <div key={r.id} className='region'>
+                            <img src={r.img} alt='' className='region-img' />
+                            <p className='label'>{r.label}</p>
                         </div>
                     )
                 })}
