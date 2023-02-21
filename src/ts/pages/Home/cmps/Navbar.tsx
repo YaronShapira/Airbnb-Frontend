@@ -11,7 +11,7 @@ export default function Navbar() {
     }
     return (
         <>
-            <nav className='navbar'>
+            <nav className={`navbar ${isSearchOpen ? 'expanded' : ''}`}>
                 <AppLogo />
                 <SearchTeaser isSearchOpen={isSearchOpen} onToggleSearch={onToggleSearch} />
                 <UserSection />

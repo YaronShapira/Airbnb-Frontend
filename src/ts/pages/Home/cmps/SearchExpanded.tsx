@@ -37,36 +37,39 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
             <div className={`search-expanded ${isSearchOpen && 'shown'}`}>
                 <form className='search-expanded-filter'>
                     <label
-                        className={`where ${selectedModule === 'filterLocation' ? 'active' : ''}`}
+                        className={`module-btn where ${selectedModule === 'filterLocation' ? 'active' : ''}`}
                         onClick={() => setSelectedModule('filterLocation')}
                     >
                         <p className='header'>Where</p>
                         <input type='text' placeholder='Search destinations' />
                     </label>
                     <label
-                        className={`${selectedModule === 'filterDatePickerIn' ? 'active' : ''}`}
+                        className={`module-btn check-in ${selectedModule === 'filterDatePickerIn' ? 'active' : ''}`}
                         onClick={() => setSelectedModule('filterDatePickerIn')}
                     >
                         <p className='header'>Check in</p>
                         <input type='text' placeholder='Add dates' />
                     </label>
                     <label
-                        className={`${selectedModule === 'filterDatePickerOut' ? 'active' : ''}`}
+                        className={`module-btn check-out ${selectedModule === 'filterDatePickerOut' ? 'active' : ''}`}
                         onClick={() => setSelectedModule('filterDatePickerOut')}
                     >
                         <p className='header'>Check out</p>
                         <input type='text' placeholder='Add dates' />
                     </label>
                     <label
-                        className={`${selectedModule === 'filterGuests' ? 'active' : ''}`}
+                        className={`module-btn who ${selectedModule === 'filterGuests' ? 'active' : ''}`}
                         onClick={() => setSelectedModule('filterGuests')}
                     >
-                        <p className='header'>Who</p>
-                        <input type='text' placeholder='Add guests' />
+                        <div className='col'>
+                            <p className='header'>Who</p>
+                            <input type='text' placeholder='Add guests' />
+                        </div>
+                        <button className='search-btn'>
+                            <img src={searchIconSrc} alt='' /> Search
+                        </button>
                     </label>
-                    <button className='search-btn'>
-                        <img src={searchIconSrc} alt='' /> Search
-                    </button>
+
                     {moduleMap[selectedModule]}
                 </form>
             </div>

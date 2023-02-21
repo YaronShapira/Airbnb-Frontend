@@ -5,11 +5,10 @@
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     height: $navbar-height;
-    background: white;
+    background: transparent;
     position: relative;
+    height: 80px;
     z-index: 5;
-
-
 
     button {
         background: transparent;
