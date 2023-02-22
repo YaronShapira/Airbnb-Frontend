@@ -1,10 +1,9 @@
 .stay-preview {
-    img {
-        width: 100%;
-        border-radius: 12px;
-        aspect-ratio: 1;
-        object-fit: cover;
-        margin-bottom: 0.6rem;
+    cursor: pointer;
+    &:hover {
+        .carousel-btn {
+            opacity: 1;
+        }
     }
     .details {
         color: #717171;
