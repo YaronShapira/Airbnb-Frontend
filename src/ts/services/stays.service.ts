@@ -16,7 +16,7 @@ export const stayService = {
 async function getStays(idx: number = 0): Promise<any> {
     try {
         const stays = await storageService.query(STORAGE_KEY)
-        return stays.slice(idx, idx + 24)
+        return stays.slice(idx, idx + 20)
     } catch (err) {
         throw err
     }

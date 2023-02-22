@@ -8,6 +8,8 @@
     color: #717171;
     padding-top: 0.65rem;
     padding-bottom: 0.65rem;
+    border-bottom: 2px solid transparent;
+    box-sizing: unset;
 
     p {
         white-space: nowrap;
@@ -19,14 +21,16 @@
         // margin-bottom: 0.45rem;
         opacity: 0.64;
     }
-    &.selected {
-        border-bottom: 3px solid black;
+    &:hover {
+        border-bottom: 2px solid #dddddd;
         img {
             opacity: 1;
         }
         color: black;
     }
-    &:hover {
+
+    &.selected {
+        border-bottom: 2px solid black;
         img {
             opacity: 1;
         }

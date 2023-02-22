@@ -2,11 +2,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi'
 import Filter from './Filter'
 import { stayService } from '../../../services/stays.service'
+const moreFiltersIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/upload/v1676833536/Airbnb/temp_dc7cvq.svg'
 const filters = stayService.getFilters()
 
-export default function Filters() {
+interface Props {
+    selectedFilter: string
+    onFilter: (selectedFilter: string) => void
+}
+
+export default function Filters({ selectedFilter, onFilter }: Props) {
     const filterPlacesRef = useRef<HTMLInputElement>(null)
-    const [animationId, setAnimationId] = useState<number | null>(null)
     const [isFullyScrolledRight, setIsFullyScrolledRight] = useState<Boolean>(false)
     const [isFullyScrolledLeft, setIsFullyScrolledLeft] = useState<Boolean>(true)
 
@@ -20,12 +25,6 @@ export default function Filters() {
     }
     function calcIsFullyScrolled() {
         if (filterPlacesRef.current) {
-            console.log('filterPlacesRef.current?.scrollLeft:', filterPlacesRef.current?.scrollLeft)
-            console.log(
-                'filterPlacesRef.current?.scrollWidth - filterPlacesRef.current?.clientWidth:',
-                filterPlacesRef.current?.scrollWidth - filterPlacesRef.current?.clientWidth
-            )
-
             setIsFullyScrolledRight(
                 Math.round(filterPlacesRef.current?.scrollLeft) ===
                     Math.round(filterPlacesRef.current?.scrollWidth - filterPlacesRef.current?.clientWidth)
@@ -35,7 +34,7 @@ export default function Filters() {
     }
     return (
         <div className='filters'>
-            <div className='left-container'>
+            <div className={`left-container ${isFullyScrolledLeft ? 'hide-arrow' : ''}`}>
                 <button
                     className={`left ${isFullyScrolledLeft ? 'hide-arrow' : ''}`}
                     onClick={() => onScrollFilters(-1)}
@@ -46,7 +45,7 @@ export default function Filters() {
 
             <div className='disable-scrollbar filter-places' ref={filterPlacesRef}>
                 {filters.map((filter, idx) => {
-                    return <Filter filter={filter} key={idx} />
+                    return <Filter filter={filter} key={idx} selectedFilter={selectedFilter} onFilter={onFilter} />
                 })}
             </div>
             <div className='btns'>
@@ -57,10 +56,7 @@ export default function Filters() {
                     <BiChevronRight fontSize={'1.2rem'} />
                 </button>
                 <button className='more-filters'>
-                    <img
-                        src='https://res.cloudinary.com/yaronshapira-com/image/upload/v1676833536/Airbnb/temp_dc7cvq.svg'
-                        alt=''
-                    />
+                    <img src={moreFiltersIconSrc} alt='' />
                     <p>Filters</p>
                 </button>
             </div>

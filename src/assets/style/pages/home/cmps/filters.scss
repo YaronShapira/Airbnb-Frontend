@@ -41,6 +41,10 @@
         justify-content: center;
         align-items: center;
         z-index: 2;
+
+        &.hide-arrow {
+            z-index: -2;
+        }
     }
 
     .left {
