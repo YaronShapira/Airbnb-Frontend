@@ -1,20 +1,26 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi'
 import Filter from './Filter'
 import { stayService } from '../../../services/stays.service'
 import MoreFilters from './MoreFilters'
+import { IFilterBy } from '../../../interfaces/filter-by-interface'
 const moreFiltersIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/upload/v1676833536/Airbnb/temp_dc7cvq.svg'
 const filters = stayService.getFilters()
 
 interface Props {
-    selectedFilter: string
-    onFilter: (selectedFilter: string) => void
+    onFilter: (filterBy: IFilterBy) => void
 }
 
-export default function Filters({ selectedFilter, onFilter }: Props) {
+export default function Filters({ onFilter }: Props) {
     const [isFullyScrolledRight, setIsFullyScrolledRight] = useState<boolean>(false)
     const [isFullyScrolledLeft, setIsFullyScrolledLeft] = useState<boolean>(true)
-    const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(true)
+    const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false)
+    const [filterBy, setFilterBy] = useState<IFilterBy>({
+        selectedFilter: '',
+        minPrice: 20,
+        maxPrice: 1000,
+        type: { entirePlace: false, privateRoom: false, SharedRoom: false },
+    })
 
     const filterPlacesRef = useRef<HTMLInputElement>(null)
 
@@ -26,7 +32,7 @@ export default function Filters({ selectedFilter, onFilter }: Props) {
             }, 600)
         }
     }
-    function calcIsFullyScrolled() {
+    function calcIsFullyScrolled(): void {
         if (filterPlacesRef.current) {
             setIsFullyScrolledRight(
                 Math.round(filterPlacesRef.current?.scrollLeft) ===
@@ -35,8 +41,16 @@ export default function Filters({ selectedFilter, onFilter }: Props) {
             setIsFullyScrolledLeft(filterPlacesRef.current?.scrollLeft === 0)
         }
     }
-    function onToggleFilters() {
+    function onToggleFilters(): void {
         setIsFiltersOpen(prevState => !prevState)
+    }
+    function onSelectFilter(selectedFilter: string): void {
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, selectedFilter }))
+    }
+
+    function onFilterMiddleware(): void {
+        setIsFiltersOpen(false)
+        onFilter(filterBy)
     }
     return (
         <div className='filters'>
@@ -51,7 +65,14 @@ export default function Filters({ selectedFilter, onFilter }: Props) {
 
             <div className='disable-scrollbar filter-places' ref={filterPlacesRef}>
                 {filters.map((filter, idx) => {
-                    return <Filter filter={filter} key={idx} selectedFilter={selectedFilter} onFilter={onFilter} />
+                    return (
+                        <Filter
+                            filter={filter}
+                            key={idx}
+                            selectedFilter={filterBy.selectedFilter}
+                            onSelectFilter={onSelectFilter}
+                        />
+                    )
                 })}
             </div>
             <div className='btns'>
@@ -66,7 +87,14 @@ export default function Filters({ selectedFilter, onFilter }: Props) {
                     <p>Filters</p>
                 </button>
             </div>
-            {isFiltersOpen && <MoreFilters onToggleFilters={onToggleFilters} />}
+            {isFiltersOpen && (
+                <MoreFilters
+                    onToggleFilters={onToggleFilters}
+                    onFilterMiddleware={onFilterMiddleware}
+                    filterBy={filterBy}
+                    setFilterBy={setFilterBy}
+                />
+            )}
         </div>
     )
 }

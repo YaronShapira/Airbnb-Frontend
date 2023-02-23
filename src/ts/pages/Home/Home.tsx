@@ -4,31 +4,20 @@ import Navbar from './cmps/Navbar'
 import Stays from './cmps/Stays'
 import { stayService } from '../../services/stays.service'
 import { utilService } from '../../services/util.service'
+import { IFilterBy } from '../../interfaces/filter-by-interface'
 
-interface IFilterBy {
-    selectedFilter: string
-    minPrice: number
-    maxPrice: number
-    type: {
-        entirePlace: boolean
-        privateRoom: boolean
-        SharedRoom: boolean
-    }
+interface ISkeletonStay {
+    type: string
+    _id: string
 }
 
 export default function Home() {
-    const [stays, setStays] = useState<any[]>([])
-    const [selectedFilter, setSelectedFilter] = useState<string>('')
+    const [stays, setStays] = useState<any[]>(getSkeletonStays())
     const currentStayPagination = useRef(0)
-    const [filterBy, setFilterBy] = useState<IFilterBy>({
-        selectedFilter: '',
-        minPrice: 0,
-        maxPrice: 0,
-        type: { entirePlace: false, privateRoom: false, SharedRoom: false },
-    })
 
     useEffect(() => {
         getStays()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     async function getStays() {
@@ -37,21 +26,21 @@ export default function Home() {
         setStays([...filteredStays, ...newStays, ...getSkeletonStays()])
         currentStayPagination.current++
     }
-    function getSkeletonStays() {
+    function getSkeletonStays(): ISkeletonStay[] {
         const res = []
         for (let i = 0; i < 20; i++) {
             res.push({ type: 'skeleton', _id: utilService.makeId() })
         }
         return res
     }
-    function onFilter(selectedFilter: string) {
-        setSelectedFilter(selectedFilter)
+    function onFilter(filterBy: IFilterBy): void {
+        console.log('filterBy:', filterBy)
     }
 
     return (
         <div className='main-layout'>
             <Navbar />
-            <Filters selectedFilter={selectedFilter} onFilter={onFilter} />
+            <Filters onFilter={onFilter} />
             <Stays stays={stays} getStays={getStays} />
         </div>
     )

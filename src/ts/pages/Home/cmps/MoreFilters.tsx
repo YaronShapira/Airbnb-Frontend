@@ -1,13 +1,17 @@
 import { AiOutlineClose } from 'react-icons/ai'
 import PriceFilter from './PriceFilter'
 import TypeFilter from './TypeFilter'
-import StrongDarkOverlay from '../../../cmps/StrongDarkOverlay'
+import StrongDarkOverlay from '../../../common-cmps/StrongDarkOverlay'
+import { IFilterBy } from '../../../interfaces/filter-by-interface'
 
 interface Props {
     onToggleFilters: () => void
+    onFilterMiddleware: () => void
+    filterBy: IFilterBy
+    setFilterBy: React.Dispatch<React.SetStateAction<IFilterBy>>
 }
 
-export default function MoreFilters({ onToggleFilters }: Props) {
+export default function MoreFilters({ onToggleFilters, onFilterMiddleware, filterBy, setFilterBy }: Props) {
     return (
         <>
             <div className='modal-filter'>
@@ -18,12 +22,14 @@ export default function MoreFilters({ onToggleFilters }: Props) {
                     <h4>Filters</h4>
                 </div>
                 <div className='content'>
-                    <PriceFilter />
-                    <TypeFilter />
+                    <PriceFilter filterBy={filterBy} setFilterBy={setFilterBy} />
+                    <TypeFilter filterBy={filterBy} setFilterBy={setFilterBy} />
                 </div>
                 <div className='footer'>
                     <button className='clear'>Clear all</button>
-                    <button className='show-homes'>Show homes</button>
+                    <button className='show-homes' onClick={onFilterMiddleware}>
+                        Show homes
+                    </button>
                 </div>
             </div>
             <StrongDarkOverlay onClickFunc={onToggleFilters} />

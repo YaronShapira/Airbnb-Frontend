@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import AppLogo from '../../../cmps/AppLogo'
+import AppLogo from '../../../common-cmps/AppLogo'
 import SearchTeaser from './SearchTeaser'
 import SearchExpanded from './SearchExpanded'
 import UserSection from './UserSection'

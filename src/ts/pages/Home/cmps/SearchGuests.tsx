@@ -1,4 +1,4 @@
-import { ISearchBy } from '../../../interfaces/search-by'
+import { ISearchBy } from '../../../interfaces/search-by-interface'
 import Counter from './Counter'
 
 interface Props {

@@ -3,6 +3,7 @@ import { storageService } from './async-storage.service'
 import { utilService } from './util.service'
 import minifiedStays from '../data/minified-stays.json'
 import filters from '../data/filters.json'
+import { IFilterBy } from '../interfaces/filter-by-interface'
 
 const STORAGE_KEY: string = 'StaysDB'
 const stayIndexIncrement = 20
@@ -15,12 +16,30 @@ export const stayService = {
 
 _createStays()
 
-async function getStays(idx: number = 0): Promise<any> {
+async function getStays(idx: number = 0, filterBy: IFilterBy = _getEmptyFilterBy()): Promise<any> {
     try {
         const stays = await storageService.query(STORAGE_KEY)
-        return stays.slice(stayIndexIncrement * idx, stayIndexIncrement * idx + stayIndexIncrement)
+        const filteredStays = _filterStays(stays, filterBy)
+        return filteredStays.slice(stayIndexIncrement * idx, stayIndexIncrement * idx + stayIndexIncrement)
     } catch (err) {
         throw err
+    }
+}
+
+function _filterStays(stays: any[], filterBy: IFilterBy): any[] {
+    return stays
+}
+
+function _getEmptyFilterBy(): IFilterBy {
+    return {
+        selectedFilter: '',
+        minPrice: 20,
+        maxPrice: 1000,
+        type: {
+            entirePlace: false,
+            privateRoom: false,
+            SharedRoom: false,
+        },
     }
 }
 

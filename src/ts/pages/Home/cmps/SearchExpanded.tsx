@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { HiSearch } from 'react-icons/hi'
-import DarkOverlay from '../../../cmps/DarkOverlay'
+import DarkOverlay from '../../../common-cmps/DarkOverlay'
 import { FilterLocation } from './SearchLocation'
 import FilterDatePicker from './SearchDatePicker'
 import FilterGuests from './SearchGuests'
-import { ISearchBy } from '../../../interfaces/search-by'
+import { ISearchBy } from '../../../interfaces/search-by-interface'
 
 const searchIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/upload/v1676904049/Airbnb/temp_vysd1h.svg'
 interface Props {
