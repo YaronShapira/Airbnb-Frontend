@@ -29,7 +29,6 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
 
     function handleGuestsCounter(inc: number, filterByField: string) {
         const updatedField = +filterBy[filterByField] + inc
-        console.log(filterBy)
 
         setFilterBy(prevFilterBy => ({ ...prevFilterBy, [filterByField]: updatedField }))
     }
@@ -44,10 +43,8 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
     function setSelectedModuleMiddleware(ev: React.MouseEvent<HTMLLabelElement, MouseEvent>, module: string) {
         ev.stopPropagation()
         ev.preventDefault()
-        console.log(ev.target)
 
         setSelectedModule(prevModule => {
-            console.log('prevModule, module:', prevModule, module)
 
             if (prevModule === module) return ''
             else return module

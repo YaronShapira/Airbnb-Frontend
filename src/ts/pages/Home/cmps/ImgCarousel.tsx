@@ -12,7 +12,6 @@ export default function ImgCarousel({ imgUrls }: Props) {
     function onNextImage(inc: number) {
         setImgIndex(prevImgIndex => prevImgIndex + inc)
     }
-    console.log(imgIndex)
 
     const carouselSettings = {
         showArrows: false,
@@ -32,7 +31,7 @@ export default function ImgCarousel({ imgUrls }: Props) {
 
             <Carousel {...carouselSettings}>
                 {imgUrls.map((imgUrl, idx) => {
-                    return <img src={imgUrl} alt='' key={idx} />
+                    return <img src={imgUrl} className='stay-img' alt='' key={idx} />
                 })}
             </Carousel>
             {imgIndex < imgUrls.length - 1 && (

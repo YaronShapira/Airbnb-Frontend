@@ -5,18 +5,20 @@ import minifiedStays from '../data/minified-stays.json'
 import filters from '../data/filters.json'
 
 const STORAGE_KEY: string = 'StaysDB'
-
-_createStays()
+const stayIndexIncrement = 20
 
 export const stayService = {
     getFilters,
     getStays,
+    stayIndexIncrement,
 }
+
+_createStays()
 
 async function getStays(idx: number = 0): Promise<any> {
     try {
         const stays = await storageService.query(STORAGE_KEY)
-        return stays.slice(idx, idx + 20)
+        return stays.slice(idx, idx + stayIndexIncrement)
     } catch (err) {
         throw err
     }
