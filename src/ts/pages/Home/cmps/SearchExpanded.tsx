@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { HiSearch } from 'react-icons/hi'
 import DarkOverlay from '../../../cmps/DarkOverlay'
-import { FilterLocation } from './FilterLocation'
-import FilterDatePicker from './FilterDatePicker'
-import FilterGuests from './FilterGuests'
-import { IFilterBy } from '../../../interfaces/filterby-interface'
+import { FilterLocation } from './SearchLocation'
+import FilterDatePicker from './SearchDatePicker'
+import FilterGuests from './SearchGuests'
+import { ISearchBy } from '../../../interfaces/search-by'
 
 const searchIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/upload/v1676904049/Airbnb/temp_vysd1h.svg'
 interface Props {
@@ -19,7 +19,7 @@ interface ModuleMap {
 export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) {
     const [selectedExperience, setSelectedExperience] = useState<string>('Stays')
     const [selectedModule, setSelectedModule] = useState<string>('')
-    const [filterBy, setFilterBy] = useState<IFilterBy>({
+    const [searchBy, setSearchBy] = useState<ISearchBy>({
         destination: '',
         adults: 0,
         children: 0,
@@ -27,14 +27,14 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
         pets: 0,
     })
 
-    function handleGuestsCounter(inc: number, filterByField: string) {
-        const updatedField = +filterBy[filterByField] + inc
+    function handleGuestsCounter(inc: number, searchByField: string) {
+        const updatedField = +searchBy[searchByField] + inc
 
-        setFilterBy(prevFilterBy => ({ ...prevFilterBy, [filterByField]: updatedField }))
+        setSearchBy(prevSearchBy => ({ ...prevSearchBy, [searchByField]: updatedField }))
     }
 
     function guestsCountFormatted() {
-        const guestsCount = filterBy.adults + filterBy.children + filterBy.infants + filterBy.pets
+        const guestsCount = searchBy.adults + searchBy.children + searchBy.infants + searchBy.pets
         if (guestsCount === 0) return ''
         if (guestsCount === 1) return '1 guest'
         else return `${guestsCount} guests`
@@ -45,7 +45,6 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
         ev.preventDefault()
 
         setSelectedModule(prevModule => {
-
             if (prevModule === module) return ''
             else return module
         })
@@ -57,10 +56,10 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
     }
 
     const moduleMap: ModuleMap = {
-        filterLocation: <FilterLocation />,
-        filterDatePickerIn: <FilterDatePicker />,
-        filterDatePickerOut: <FilterDatePicker />,
-        filterGuests: <FilterGuests handleGuestsCounter={handleGuestsCounter} filterBy={filterBy} />,
+        searchLocation: <FilterLocation />,
+        searchDatePickerIn: <FilterDatePicker />,
+        searchDatePickerOut: <FilterDatePicker />,
+        searchGuests: <FilterGuests handleGuestsCounter={handleGuestsCounter} searchBy={searchBy} />,
     }
     return (
         <>
@@ -85,31 +84,31 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
                 </button>
             </div>
             <div className={`search-expanded ${isSearchOpen && 'shown'}`}>
-                <div className='search-expanded-filter'>
+                <div className='search-expanded-search'>
                     <label
-                        className={`module-btn where ${selectedModule === 'filterLocation' ? 'active' : ''}`}
-                        onClick={ev => setSelectedModuleMiddleware(ev, 'filterLocation')}
+                        className={`module-btn where ${selectedModule === 'searchLocation' ? 'active' : ''}`}
+                        onClick={ev => setSelectedModuleMiddleware(ev, 'searchLocation')}
                     >
                         <p className='header'>Where</p>
                         <input type='text' placeholder='Search destinations' />
                     </label>
                     <label
-                        className={`module-btn check-in ${selectedModule === 'filterDatePickerIn' ? 'active' : ''}`}
-                        onClick={ev => setSelectedModuleMiddleware(ev, 'filterDatePickerIn')}
+                        className={`module-btn check-in ${selectedModule === 'searchDatePickerIn' ? 'active' : ''}`}
+                        onClick={ev => setSelectedModuleMiddleware(ev, 'searchDatePickerIn')}
                     >
                         <p className='header'>Check in</p>
                         <input type='text' placeholder='Add dates' />
                     </label>
                     <label
-                        className={`module-btn check-out ${selectedModule === 'filterDatePickerOut' ? 'active' : ''}`}
-                        onClick={ev => setSelectedModuleMiddleware(ev, 'filterDatePickerOut')}
+                        className={`module-btn check-out ${selectedModule === 'searchDatePickerOut' ? 'active' : ''}`}
+                        onClick={ev => setSelectedModuleMiddleware(ev, 'searchDatePickerOut')}
                     >
                         <p className='header'>Check out</p>
                         <input type='text' placeholder='Add dates' />
                     </label>
                     <label
-                        className={`module-btn who ${selectedModule === 'filterGuests' ? 'active' : ''}`}
-                        onClick={ev => setSelectedModuleMiddleware(ev, 'filterGuests')}
+                        className={`module-btn who ${selectedModule === 'searchGuests' ? 'active' : ''}`}
+                        onClick={ev => setSelectedModuleMiddleware(ev, 'searchGuests')}
                     >
                         <div className='col'>
                             <p className='header'>Who</p>

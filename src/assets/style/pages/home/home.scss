@@ -8,9 +8,12 @@
 @import './cmps/stay-skeleton.scss';
 @import './cmps/search-expanded.scss';
 
-@import './cmps/filter-module.scss';
-@import './cmps/filter-location.scss';
-@import './cmps/filter-guests.scss';
-@import './cmps/filter-date-picker.scss';
+@import './cmps/search-module.scss';
+@import './cmps/search-location.scss';
+@import './cmps/search-guests.scss';
+@import './cmps/search-date-picker.scss';
 
 @import './cmps/counter.scss';
+@import './cmps/modal-filter.scss';
+@import './cmps/price-filter.scss';
+@import './cmps/type-filter.scss';

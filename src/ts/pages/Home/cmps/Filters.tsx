@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi'
 import Filter from './Filter'
 import { stayService } from '../../../services/stays.service'
+import MoreFilters from './MoreFilters'
 const moreFiltersIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/upload/v1676833536/Airbnb/temp_dc7cvq.svg'
 const filters = stayService.getFilters()
 
@@ -11,9 +12,11 @@ interface Props {
 }
 
 export default function Filters({ selectedFilter, onFilter }: Props) {
+    const [isFullyScrolledRight, setIsFullyScrolledRight] = useState<boolean>(false)
+    const [isFullyScrolledLeft, setIsFullyScrolledLeft] = useState<boolean>(true)
+    const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(true)
+
     const filterPlacesRef = useRef<HTMLInputElement>(null)
-    const [isFullyScrolledRight, setIsFullyScrolledRight] = useState<Boolean>(false)
-    const [isFullyScrolledLeft, setIsFullyScrolledLeft] = useState<Boolean>(true)
 
     function onScrollFilters(direction: number) {
         if (filterPlacesRef.current) {
@@ -31,6 +34,9 @@ export default function Filters({ selectedFilter, onFilter }: Props) {
             )
             setIsFullyScrolledLeft(filterPlacesRef.current?.scrollLeft === 0)
         }
+    }
+    function onToggleFilters() {
+        setIsFiltersOpen(prevState => !prevState)
     }
     return (
         <div className='filters'>
@@ -55,11 +61,12 @@ export default function Filters({ selectedFilter, onFilter }: Props) {
                 >
                     <BiChevronRight fontSize={'1.2rem'} />
                 </button>
-                <button className='more-filters'>
+                <button className='more-filters' onClick={() => setIsFiltersOpen(true)}>
                     <img src={moreFiltersIconSrc} alt='' />
                     <p>Filters</p>
                 </button>
             </div>
+            {isFiltersOpen && <MoreFilters onToggleFilters={onToggleFilters} />}
         </div>
     )
 }

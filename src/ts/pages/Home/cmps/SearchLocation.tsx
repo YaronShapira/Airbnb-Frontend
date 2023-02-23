@@ -5,7 +5,7 @@ import regionImgFR from '../../../../assets/img/regions/france.webp'
 import regionImgSA from '../../../../assets/img/regions/south-america.webp'
 import regionImgUSA from '../../../../assets/img/regions/usa.webp'
 
-export function FilterLocation({ onSelectRegion, filterBy }: any) {
+export function FilterLocation({ onSelectRegion, searchBy }: any) {
     const regions = [
         { id: 'all', label: "I'm Flexible", img: regionImgAll },
         { id: 'middle-east', label: 'Middle East', img: regionImgME },
@@ -16,7 +16,7 @@ export function FilterLocation({ onSelectRegion, filterBy }: any) {
     ]
 
     return (
-        <section className='filter-module filter-location'>
+        <section className='search-module search-location'>
             <h4 className='title'>Search by region</h4>
             <div className='regions'>
                 {regions.map(r => {

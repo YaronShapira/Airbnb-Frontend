@@ -5,10 +5,27 @@ import Stays from './cmps/Stays'
 import { stayService } from '../../services/stays.service'
 import { utilService } from '../../services/util.service'
 
+interface IFilterBy {
+    selectedFilter: string
+    minPrice: number
+    maxPrice: number
+    type: {
+        entirePlace: boolean
+        privateRoom: boolean
+        SharedRoom: boolean
+    }
+}
+
 export default function Home() {
     const [stays, setStays] = useState<any[]>([])
     const [selectedFilter, setSelectedFilter] = useState<string>('')
     const currentStayPagination = useRef(0)
+    const [filterBy, setFilterBy] = useState<IFilterBy>({
+        selectedFilter: '',
+        minPrice: 0,
+        maxPrice: 0,
+        type: { entirePlace: false, privateRoom: false, SharedRoom: false },
+    })
 
     useEffect(() => {
         getStays()

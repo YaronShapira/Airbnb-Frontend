@@ -1,4 +1,4 @@
-export interface IFilterBy {
+export interface ISearchBy {
     [key: string]: string | number
     destination: string
     adults: number

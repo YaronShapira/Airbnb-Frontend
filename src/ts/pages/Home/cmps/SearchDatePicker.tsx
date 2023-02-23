@@ -4,7 +4,7 @@ import { DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 
-export default function FilterDatePicker() {
+export default function SearchDatePicker() {
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
     const selectionRange = {
@@ -17,7 +17,7 @@ export default function FilterDatePicker() {
         setEndDate(ranges.selection.endDate)
     }
     return (
-        <section className='filter-module filter-date-picker'>
+        <section className='search-module search-date-picker'>
             <DateRangePicker
                 ranges={[selectionRange]}
                 minDate={new Date()}
