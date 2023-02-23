@@ -8,7 +8,7 @@ const moreFiltersIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/up
 const filters = stayService.getFilters()
 
 interface Props {
-    onFilter: (filterBy: IFilterBy) => void
+    onFilter: () => void
     filterBy: IFilterBy
     setFilterBy: React.Dispatch<React.SetStateAction<IFilterBy>>
 }
@@ -47,13 +47,25 @@ export default function Filters({ onFilter, filterBy, setFilterBy }: Props) {
         setIsFiltersOpen(prevState => !prevState)
     }
     function onSelectFilter(selectedFilter: string): void {
-        setFilterBy(prevFilterBy => ({ ...prevFilterBy, selectedFilter }))
+        if (filterBy.selectedFilter === selectedFilter) {
+            console.log('REMOVE')
+            setFilterBy(prevFilterBy => ({ ...prevFilterBy, selectedFilter: '' }))
+            filterBy.selectedFilter = ''
+        } else {
+            console.log('ADD')
+            setFilterBy(prevFilterBy => ({ ...prevFilterBy, selectedFilter }))
+            filterBy.selectedFilter = selectedFilter
+        }
+        // console.log(selectedFilter)
+
+        onFilter()
     }
 
     function onFilterMiddleware(): void {
         setIsFiltersOpen(false)
-        onFilter(filterBy)
+        onFilter()
     }
+
     return (
         <div className='filters'>
             <div className={`left-container ${isFullyScrolledLeft ? 'hide-arrow' : ''}`}>

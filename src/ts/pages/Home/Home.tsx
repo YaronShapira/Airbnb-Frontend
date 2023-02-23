@@ -27,6 +27,7 @@ export default function Home() {
     }, [])
 
     async function getStays() {
+        console.log(filterBy)
         let newStays = await stayService.getStays(currentStayPagination.current, filterBy)
         // Clean all skeletons
         const filteredStays = stays.filter(stay => stay.name)
@@ -46,7 +47,7 @@ export default function Home() {
         }
         return res
     }
-    function onFilter(filterBy: IFilterBy): void {
+    function onFilter(): void {
         currentStayPagination.current = 0
         stays = []
         getStays()

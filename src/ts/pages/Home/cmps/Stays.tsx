@@ -6,8 +6,6 @@ export default function Stays({ stays, getStays }: any) {
     const firstSkeletonRef = useRef<HTMLDivElement>(null)
     let isFirstSkelton = true
 
-    
-
     function onMount() {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -20,7 +18,7 @@ export default function Stays({ stays, getStays }: any) {
         )
 
         if (firstSkeletonRef.current) {
-            console.log('OBSERVING')
+            // console.log('OBSERVING')
 
             observer.observe(firstSkeletonRef.current)
         }

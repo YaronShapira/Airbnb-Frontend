@@ -6,6 +6,7 @@ export const utilService = {
     loadFromStorage,
     formatTimeAgo,
     capitalize,
+    getRandomItemFromArr,
 }
 
 export function makeId(length: number = 6): string {
@@ -75,4 +76,8 @@ function formatTimeAgo(sentAt: number): string {
     }
 
     return `${output}`
+}
+
+function getRandomItemFromArr(arr: any[]) {
+    return arr[Math.floor(Math.random() * arr.length)]
 }
