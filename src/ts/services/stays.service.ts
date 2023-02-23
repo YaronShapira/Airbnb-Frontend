@@ -27,7 +27,24 @@ async function getStays(idx: number = 0, filterBy: IFilterBy = _getEmptyFilterBy
 }
 
 function _filterStays(stays: any[], filterBy: IFilterBy): any[] {
-    return stays
+    let filteredStays = stays
+    if (filterBy.selectedFilter) {
+    }
+    if (filterBy.minPrice > 0) {
+        filteredStays = filteredStays.filter(stay => stay.price > filterBy.minPrice)
+    }
+    if (filterBy.maxPrice) {
+        filteredStays = filteredStays.filter(stay => stay.price < filterBy.maxPrice)
+    }
+    if (filterBy.type.entirePlace || filterBy.type.privateRoom) {
+        if (filterBy.type.entirePlace) {
+            filteredStays = filteredStays.filter(stay => stay.type === 'Entire home/apt')
+        }
+        if (filterBy.type.privateRoom) {
+            filteredStays = filteredStays.filter(stay => stay.type === 'Private room')
+        }
+    }
+    return filteredStays
 }
 
 function _getEmptyFilterBy(): IFilterBy {

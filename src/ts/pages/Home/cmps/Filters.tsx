@@ -9,18 +9,20 @@ const filters = stayService.getFilters()
 
 interface Props {
     onFilter: (filterBy: IFilterBy) => void
+    filterBy: IFilterBy
+    setFilterBy: React.Dispatch<React.SetStateAction<IFilterBy>>
 }
 
-export default function Filters({ onFilter }: Props) {
+export default function Filters({ onFilter, filterBy, setFilterBy }: Props) {
     const [isFullyScrolledRight, setIsFullyScrolledRight] = useState<boolean>(false)
     const [isFullyScrolledLeft, setIsFullyScrolledLeft] = useState<boolean>(true)
     const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false)
-    const [filterBy, setFilterBy] = useState<IFilterBy>({
-        selectedFilter: '',
-        minPrice: 20,
-        maxPrice: 1000,
-        type: { entirePlace: false, privateRoom: false, SharedRoom: false },
-    })
+    // const [filterBy, setFilterBy] = useState<IFilterBy>({
+    //     selectedFilter: '',
+    //     minPrice: 20,
+    //     maxPrice: 1000,
+    //     type: { entirePlace: false, privateRoom: false, SharedRoom: false },
+    // })
 
     const filterPlacesRef = useRef<HTMLInputElement>(null)
 
