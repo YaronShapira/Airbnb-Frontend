@@ -1,48 +1,22 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import StayPreview from './StayPreview'
 import StaySkeleton from './StaySkeleton'
 
-export default function Stays({ stays }: any) {
+export default function Stays({ stays, getStays }: any) {
     const firstSkeletonRef = useRef<HTMLDivElement>(null)
     let isFirstSkelton = true
 
-    // useEffect(() => {
-    //     const observer = new IntersectionObserver(
-    //         ([entry]) => {
-    //             if (entry.isIntersecting) {
-    //                 onEnterViewport()
-    //                 observer.unobserve(entry.target)
-    //             }
-    //         },
-    //         { threshold: 0.5 } // Trigger when element is 50% visible
-    //     )
-
-    //     if (firstSkeletonRef.current) {
-    //         console.log('OBSERVING')
-
-    //         observer.observe(firstSkeletonRef.current)
-    //     }
-
-    //     return () => {
-    //         if (firstSkeletonRef.current) {
-    //             observer.unobserve(firstSkeletonRef.current)
-    //         }
-    //     }
-    // }, [firstSkeletonRef])
-
-    function onEnterViewport() {
-        console.log('YES')
-    }
+    
 
     function onMount() {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    onEnterViewport()
+                    getStays()
                     observer.unobserve(entry.target)
                 }
             },
-            { threshold: 0.5 } // Trigger when element is 50% visible
+            { threshold: 0.3 } // Trigger when element is 50% visible
         )
 
         if (firstSkeletonRef.current) {

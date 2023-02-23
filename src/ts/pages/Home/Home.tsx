@@ -8,43 +8,25 @@ import { utilService } from '../../services/util.service'
 export default function Home() {
     const [stays, setStays] = useState<any[]>([])
     const [selectedFilter, setSelectedFilter] = useState<string>('')
-    
+    const currentStayPagination = useRef(0)
 
     useEffect(() => {
         getStays()
     }, [])
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.pageYOffset
-            const windowHeight = window.innerHeight
-            const fullHeight = document.body.scrollHeight
-            const scrollPercentage = (scrollPosition / (fullHeight - windowHeight)) * 100
-
-            if (scrollPercentage > 50) {
-                // console.log('YES')
-            }
-        }
-
-        window.addEventListener('scroll', handleScroll)
-
-        return () => {
-            window.removeEventListener('scroll', handleScroll)
-        }
-    }, [])
-
-    
-
-    
-
     async function getStays() {
-        let stays = await stayService.getStays()
-        for (let i = 0; i < 20; i++) {
-            stays.push({ type: 'skeleton', _id: utilService.makeId() })
-        }
-        setStays(stays)
+        let newStays = await stayService.getStays(currentStayPagination.current)
+        const filteredStays = stays.filter(stay => stay.name)
+        setStays([...filteredStays, ...newStays, ...getSkeletonStays()])
+        currentStayPagination.current++
     }
-
+    function getSkeletonStays() {
+        const res = []
+        for (let i = 0; i < 20; i++) {
+            res.push({ type: 'skeleton', _id: utilService.makeId() })
+        }
+        return res
+    }
     function onFilter(selectedFilter: string) {
         setSelectedFilter(selectedFilter)
     }
@@ -53,7 +35,7 @@ export default function Home() {
         <div className='main-layout'>
             <Navbar />
             <Filters selectedFilter={selectedFilter} onFilter={onFilter} />
-            <Stays stays={stays} />
+            <Stays stays={stays} getStays={getStays} />
         </div>
     )
 }

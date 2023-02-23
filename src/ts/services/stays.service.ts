@@ -18,7 +18,7 @@ _createStays()
 async function getStays(idx: number = 0): Promise<any> {
     try {
         const stays = await storageService.query(STORAGE_KEY)
-        return stays.slice(idx, idx + stayIndexIncrement)
+        return stays.slice(stayIndexIncrement * idx, stayIndexIncrement * idx + stayIndexIncrement)
     } catch (err) {
         throw err
     }
