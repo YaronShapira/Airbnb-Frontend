@@ -13,12 +13,13 @@ interface Props {
     onToggleSearch: () => void
     searchBy: ISearchBy
     setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
+    onSearch: (ev: React.MouseEvent<HTMLButtonElement>) => void
 }
 interface ModuleMap {
     [key: string]: React.ReactNode
 }
 
-export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy, setSearchBy }: Props) {
+export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy, setSearchBy, onSearch }: Props) {
     const [selectedExperience, setSelectedExperience] = useState<string>('Stays')
     const [selectedModule, setSelectedModule] = useState<string>('')
 
@@ -45,10 +46,7 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy,
         })
     }
 
-    function onSearch(ev: React.MouseEvent<HTMLButtonElement>) {
-        ev.preventDefault()
-        ev.stopPropagation()
-    }
+    
 
     const moduleMap: ModuleMap = {
         searchLocation: <SearchLocation />,

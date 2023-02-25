@@ -7,10 +7,11 @@ import SearchExpandedMobile from './SearchExpandedMobile'
 interface Props {
     searchBy: ISearchBy
     setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
+    onSearch: (ev: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export default function MobileNavbar({ searchBy, setSearchBy }: Props) {
-    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(true)
+export default function MobileNavbar({ searchBy, setSearchBy, onSearch }: Props) {
+    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
 
     function onToggleSearch(): void {
         setIsSearchOpen(prevState => !prevState)
@@ -39,6 +40,7 @@ export default function MobileNavbar({ searchBy, setSearchBy }: Props) {
                     onToggleSearch={onToggleSearch}
                     searchBy={searchBy}
                     setSearchBy={setSearchBy}
+                    onSearch={onSearch}
                 />
             )}
         </>

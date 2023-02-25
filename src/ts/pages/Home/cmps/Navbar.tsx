@@ -14,6 +14,12 @@ export default function Navbar() {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
+    function onSearch(ev: React.MouseEvent<HTMLButtonElement>) {
+        ev.preventDefault()
+        ev.stopPropagation()
+        console.log(searchBy)
+    }
+
     const [searchBy, setSearchBy] = useState<ISearchBy>({
         destination: '',
         adults: 0,
@@ -21,7 +27,7 @@ export default function Navbar() {
         infants: 0,
         pets: 0,
     })
-    const props = { searchBy, setSearchBy }
+    const props = { searchBy, setSearchBy, onSearch }
 
     return <>{isMobile ? <MobileNavbar {...props} /> : <PCNavbar {...props} />}</>
 }

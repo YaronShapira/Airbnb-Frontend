@@ -107,3 +107,9 @@ body.remove-scrollbar {
         background: transparent; /* Optional: just make scrollbar invisible */
     }
 }
+
+@media screen and (max-width: $mobile-size) {
+    .mob-hide {
+        display: none !important;
+    }
+}

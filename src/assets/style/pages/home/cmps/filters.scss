@@ -6,6 +6,10 @@
     padding-top: 1.5rem;
     position: relative;
 
+    @media screen and (max-width: $mobile-size) {
+        grid-template-columns: 1fr 60px;
+    }
+
     .right,
     .left {
         font-size: 12px;
@@ -64,6 +68,10 @@
         overflow-y: auto;
         position: relative;
         scroll-behavior: smooth;
+
+        @media screen and (max-width: $mobile-size) {
+            gap: 1rem;
+        }
     }
     .btns {
         width: 100%;

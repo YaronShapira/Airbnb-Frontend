@@ -8,9 +8,11 @@ import { ISearchBy } from '../../../interfaces/search-by-interface'
 interface Props {
     searchBy: ISearchBy
     setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
+    onSearch: (ev: React.MouseEvent<HTMLButtonElement>) => void
+    
 }
 
-export default function PCNavbar({ searchBy, setSearchBy }: Props) {
+export default function PCNavbar({ searchBy, setSearchBy,onSearch }: Props) {
     const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
 
     function onToggleSearch(): void {
@@ -28,6 +30,7 @@ export default function PCNavbar({ searchBy, setSearchBy }: Props) {
                 onToggleSearch={onToggleSearch}
                 searchBy={searchBy}
                 setSearchBy={setSearchBy}
+                onSearch={onSearch}
             />
             <div className='full-bleed border'></div>
         </>

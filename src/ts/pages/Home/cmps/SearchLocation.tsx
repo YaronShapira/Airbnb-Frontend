@@ -5,7 +5,11 @@ import regionImgFR from '../../../../assets/img/regions/france.webp'
 import regionImgSA from '../../../../assets/img/regions/south-america.webp'
 import regionImgUSA from '../../../../assets/img/regions/usa.webp'
 
-export default function SearchLocation({ onSelectRegion, searchBy }: any) {
+interface Props {
+    isMobile?: boolean
+}
+
+export default function SearchLocation({ isMobile }: Props) {
     const regions = [
         { id: 'all', label: "I'm Flexible", img: regionImgAll },
         { id: 'middle-east', label: 'Middle East', img: regionImgME },
@@ -18,15 +22,18 @@ export default function SearchLocation({ onSelectRegion, searchBy }: any) {
     return (
         <section className='search-module search-location'>
             <h4 className='title'>Search by region</h4>
-            <div className='regions'>
-                {regions.map(r => {
-                    return (
-                        <div key={r.id} className='region'>
-                            <img src={r.img} alt='' className='region-img' />
-                            <p className='label'>{r.label}</p>
-                        </div>
-                    )
-                })}
+            {isMobile && <input type='text' placeholder='Search destinations' />}
+            <div className='wrapper'>
+                <div className='regions'>
+                    {regions.map(r => {
+                        return (
+                            <div key={r.id} className='region'>
+                                <img src={r.img} alt='' className='region-img' />
+                                <p className='label'>{r.label}</p>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         </section>
     )

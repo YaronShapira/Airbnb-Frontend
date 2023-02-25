@@ -70,7 +70,7 @@ export default function Filters({ onFilter, filterBy, setFilterBy }: Props) {
         <div className='filters'>
             <div className={`left-container ${isFullyScrolledLeft ? 'hide-arrow' : ''}`}>
                 <button
-                    className={`left ${isFullyScrolledLeft ? 'hide-arrow' : ''}`}
+                    className={`left mob-hide ${isFullyScrolledLeft ? 'hide-arrow' : ''}`}
                     onClick={() => onScrollFilters(-1)}
                 >
                     <BiChevronLeft fontSize={'1.2rem'} />
@@ -91,14 +91,14 @@ export default function Filters({ onFilter, filterBy, setFilterBy }: Props) {
             </div>
             <div className='btns'>
                 <button
-                    className={`right ${isFullyScrolledRight ? 'hide-arrow' : ''}`}
+                    className={`right mob-hide ${isFullyScrolledRight ? 'hide-arrow' : ''}`}
                     onClick={() => onScrollFilters(1)}
                 >
                     <BiChevronRight fontSize={'1.2rem'} />
                 </button>
                 <button className='more-filters' onClick={() => setIsFiltersOpen(true)}>
                     <img src={moreFiltersIconSrc} alt='' />
-                    <p>Filters</p>
+                    <p className='mob-hide'>Filters</p>
                 </button>
             </div>
             {isFiltersOpen && (

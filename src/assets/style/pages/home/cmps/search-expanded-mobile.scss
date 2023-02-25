@@ -118,5 +118,49 @@
 
     .search-module {
         position: static;
+
+        &.search-date-picker {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &.search-location {
+            .wrapper {
+                margin-top: 1rem;
+                width: 74vw;
+                display: flex;
+                overflow-x: scroll;
+                overflow: auto;
+            }
+            .regions {
+                display: flex;
+                .region {
+                    width: 122px;
+                    img {
+                        width: 122px;
+                        height: 122px;
+                    }
+                }
+            }
+            input {
+                width: 100%;
+                -webkit-box-align: center;
+                flex: 1 1 0%;
+                overflow: hidden;
+                position: relative;
+                align-items: center;
+                display: flex;
+                margin: 0px;
+                padding: 0px 20px;
+                white-space: nowrap;
+                height: 60px;
+                border-radius: 12px;
+                border: 1px solid rgb(176, 176, 176);
+                background: rgb(255, 255, 255);
+                color: rgb(34, 34, 34);
+            }
+        }
     }
 }

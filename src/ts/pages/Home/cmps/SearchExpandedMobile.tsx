@@ -11,12 +11,10 @@ interface Props {
     onToggleSearch: () => void
     searchBy: ISearchBy
     setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
-}
-interface ModuleMap {
-    [key: string]: React.ReactNode
+    onSearch: (ev: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, searchBy, setSearchBy }: Props) {
+export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, searchBy, setSearchBy, onSearch }: Props) {
     const [selectedExperience, setSelectedExperience] = useState<string>('Stays')
     const [selectedModule, setSelectedModule] = useState<string>('')
 
@@ -51,18 +49,6 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
         })
     }
 
-    function onSearch(ev: React.MouseEvent<HTMLButtonElement>) {
-        ev.preventDefault()
-        ev.stopPropagation()
-    }
-
-    const moduleMap: ModuleMap = {
-        searchLocation: <SearchLocation />,
-        searchDatePickerIn: <SearchDatePicker />,
-        searchDatePickerOut: <SearchDatePicker />,
-        searchGuests: <SearchGuests handleGuestsCounter={handleGuestsCounter} searchBy={searchBy} />,
-    }
-
     return (
         <div className='main-layout search-expanded-mobile'>
             <button className='close' onClick={onToggleSearch}>
@@ -89,7 +75,7 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
                         <p>I'm flexible</p>
                     </div>
                 )}
-                {selectedModule === 'searchLocation' && <SearchLocation />}
+                {selectedModule === 'searchLocation' && <SearchLocation isMobile={true}/>}
                 {selectedModule !== 'searchDatePicker' && (
                     <div className='tab' onClick={ev => setSelectedModuleMiddleware(ev, 'searchDatePicker')}>
                         <p className='muted'>When</p>
@@ -109,7 +95,7 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
             </div>
             <div className='full-bleed footer'>
                 <p>Clear all</p>
-                <button>
+                <button onClick={onSearch}>
                     <BiSearch fontSize={'20px'} />
                     Search
                 </button>
