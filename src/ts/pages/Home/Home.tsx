@@ -50,6 +50,7 @@ export default function Home() {
     function onFilter(): void {
         currentStayPagination.current = 0
         stays = []
+        setStays(getSkeletonStays())
         getStays()
     }
 
