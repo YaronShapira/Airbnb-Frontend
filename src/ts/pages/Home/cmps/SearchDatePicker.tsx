@@ -30,6 +30,7 @@ export default function SearchDatePicker({ searchBy, setSearchBy, handleSelect }
                 minDate={new Date()}
                 rangeColors={['#ff385c']}
                 onChange={handleSelectDate}
+                // showSelectionPreview={false}
             />
         </section>
     )

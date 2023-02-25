@@ -127,6 +127,15 @@
             justify-content: center;
         }
 
+        &.search-guests {
+            min-width: unset;
+            padding: 1rem 1rem;
+
+            .row {
+                min-width: unset;
+            }
+        }
+
         &.search-location {
             padding: 2rem;
             width: 100%;

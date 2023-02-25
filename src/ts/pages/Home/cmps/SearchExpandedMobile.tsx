@@ -34,7 +34,7 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
 
     function guestsCountFormatted() {
         const guestsCount = searchBy.adults + searchBy.children + searchBy.infants + searchBy.pets
-        if (guestsCount === 0) return ''
+        if (guestsCount === 0) return 'Add guests'
         if (guestsCount === 1) return '1 guest'
         else return `${guestsCount} guests`
     }
@@ -82,7 +82,7 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
                 {selectedModule !== 'searchLocation' && (
                     <div className='tab' onClick={ev => setSelectedModuleMiddleware(ev, 'searchLocation')}>
                         <p className='muted'>Where</p>
-                        <p>I'm flexible</p>
+                        <p>{searchBy.destination ? searchBy.destination : "I'm flexible"}</p>
                     </div>
                 )}
                 {selectedModule === 'searchLocation' && (
@@ -96,7 +96,7 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
                 {selectedModule !== 'searchDatePicker' && (
                     <div className='tab' onClick={ev => setSelectedModuleMiddleware(ev, 'searchDatePicker')}>
                         <p className='muted'>When</p>
-                        <p>Add dates</p>
+                        <p>{`${searchBy.checkIn.toLocaleDateString()} - ${searchBy.checkOut.toLocaleDateString()}`}</p>
                     </div>
                 )}
                 {selectedModule === 'searchDatePicker' && (
@@ -105,7 +105,7 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
                 {selectedModule !== 'searchGuests' && (
                     <div className='tab' onClick={ev => setSelectedModuleMiddleware(ev, 'searchGuests')}>
                         <p className='muted'>Who</p>
-                        <p>Add guests</p>
+                        <p>{guestsCountFormatted()}</p>
                     </div>
                 )}
                 {selectedModule === 'searchGuests' && (
