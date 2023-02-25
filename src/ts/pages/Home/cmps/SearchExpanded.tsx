@@ -2,30 +2,25 @@ import { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { HiSearch } from 'react-icons/hi'
 import DarkOverlay from '../../../common-cmps/DarkOverlay'
-import { FilterLocation } from './SearchLocation'
-import FilterDatePicker from './SearchDatePicker'
-import FilterGuests from './SearchGuests'
+import SearchLocation from './SearchLocation'
+import SearchDatePicker from './SearchDatePicker'
+import SearchGuests from './SearchGuests'
 import { ISearchBy } from '../../../interfaces/search-by-interface'
 
 const searchIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/upload/v1676904049/Airbnb/temp_vysd1h.svg'
 interface Props {
     isSearchOpen: boolean
     onToggleSearch: () => void
+    searchBy: ISearchBy
+    setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
 }
 interface ModuleMap {
     [key: string]: React.ReactNode
 }
 
-export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) {
+export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy, setSearchBy }: Props) {
     const [selectedExperience, setSelectedExperience] = useState<string>('Stays')
     const [selectedModule, setSelectedModule] = useState<string>('')
-    const [searchBy, setSearchBy] = useState<ISearchBy>({
-        destination: '',
-        adults: 0,
-        children: 0,
-        infants: 0,
-        pets: 0,
-    })
 
     function handleGuestsCounter(inc: number, searchByField: string) {
         const updatedField = +searchBy[searchByField] + inc
@@ -56,10 +51,10 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch }: Props) 
     }
 
     const moduleMap: ModuleMap = {
-        searchLocation: <FilterLocation />,
-        searchDatePickerIn: <FilterDatePicker />,
-        searchDatePickerOut: <FilterDatePicker />,
-        searchGuests: <FilterGuests handleGuestsCounter={handleGuestsCounter} searchBy={searchBy} />,
+        searchLocation: <SearchLocation />,
+        searchDatePickerIn: <SearchDatePicker />,
+        searchDatePickerOut: <SearchDatePicker />,
+        searchGuests: <SearchGuests handleGuestsCounter={handleGuestsCounter} searchBy={searchBy} />,
     }
     return (
         <>

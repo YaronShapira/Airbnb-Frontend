@@ -97,3 +97,13 @@
 .cursor-pointer {
     cursor: pointer;
 }
+
+body.remove-scrollbar {
+    overflow: hidden;
+    overflow-x: hidden;
+
+    ::-webkit-scrollbar {
+        width: 0; /* Remove scrollbar space */
+        background: transparent; /* Optional: just make scrollbar invisible */
+    }
+}

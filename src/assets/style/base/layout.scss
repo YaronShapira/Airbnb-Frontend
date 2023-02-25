@@ -1,9 +1,17 @@
 .main-layout {
+    --layout-padding: 5rem;
+    @media screen and (max-width: 1400px) {
+        --layout-padding: 2.5rem;
+    }
+    @media screen and (max-width: $mobile-size) {
+        --layout-padding: 24px;
+    }
+
     display: grid;
     grid-template-columns:
-        $layout-padding
+        var(--layout-padding)
         1fr
-        $layout-padding;
+        var(--layout-padding);
     > * {
         grid-column: 2;
     }
