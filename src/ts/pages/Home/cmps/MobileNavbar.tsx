@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { ISearchBy } from '../../../interfaces/search-by-interface'
-import SearchTeaser from './SearchTeaser'
 import { BiSearch } from 'react-icons/bi'
 import SearchExpandedMobile from './SearchExpandedMobile'
 

@@ -49,6 +49,16 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
         })
     }
 
+    function handleSelect(): void {
+        switch (selectedModule) {
+            case 'searchLocation':
+                setSelectedModule('searchDatePicker')
+                break
+            default:
+                break
+        }
+    }
+
     return (
         <div className='main-layout search-expanded-mobile'>
             <button className='close' onClick={onToggleSearch}>
@@ -75,14 +85,23 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
                         <p>I'm flexible</p>
                     </div>
                 )}
-                {selectedModule === 'searchLocation' && <SearchLocation isMobile={true}/>}
+                {selectedModule === 'searchLocation' && (
+                    <SearchLocation
+                        isMobile={true}
+                        searchBy={searchBy}
+                        setSearchBy={setSearchBy}
+                        handleSelect={handleSelect}
+                    />
+                )}
                 {selectedModule !== 'searchDatePicker' && (
                     <div className='tab' onClick={ev => setSelectedModuleMiddleware(ev, 'searchDatePicker')}>
                         <p className='muted'>When</p>
                         <p>Add dates</p>
                     </div>
                 )}
-                {selectedModule === 'searchDatePicker' && <SearchDatePicker />}
+                {selectedModule === 'searchDatePicker' && (
+                    <SearchDatePicker searchBy={searchBy} setSearchBy={setSearchBy} handleSelect={() => {}} />
+                )}
                 {selectedModule !== 'searchGuests' && (
                     <div className='tab' onClick={ev => setSelectedModuleMiddleware(ev, 'searchGuests')}>
                         <p className='muted'>Who</p>

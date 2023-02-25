@@ -46,12 +46,31 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy,
         })
     }
 
-    
+    function handleSelect(): void {
+        switch (selectedModule) {
+            case 'searchLocation':
+                setSelectedModule('searchDatePickerIn')
+                break
+            case 'searchDatePickerIn':
+                setSelectedModule('searchDatePickerOut')
+                break
+            case 'searchDatePickerOut':
+                setSelectedModule('searchGuests')
+                break
+
+            default:
+                break
+        }
+    }
 
     const moduleMap: ModuleMap = {
-        searchLocation: <SearchLocation />,
-        searchDatePickerIn: <SearchDatePicker />,
-        searchDatePickerOut: <SearchDatePicker />,
+        searchLocation: <SearchLocation searchBy={searchBy} setSearchBy={setSearchBy} handleSelect={handleSelect} />,
+        searchDatePickerIn: (
+            <SearchDatePicker searchBy={searchBy} setSearchBy={setSearchBy} handleSelect={handleSelect} />
+        ),
+        searchDatePickerOut: (
+            <SearchDatePicker searchBy={searchBy} setSearchBy={setSearchBy} handleSelect={handleSelect} />
+        ),
         searchGuests: <SearchGuests handleGuestsCounter={handleGuestsCounter} searchBy={searchBy} />,
     }
     return (
@@ -83,21 +102,31 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy,
                         onClick={ev => setSelectedModuleMiddleware(ev, 'searchLocation')}
                     >
                         <p className='header'>Where</p>
-                        <input type='text' placeholder='Search destinations' />
+                        <input type='text' placeholder='Search destinations' value={searchBy.destination} readOnly />
                     </label>
                     <label
                         className={`module-btn check-in ${selectedModule === 'searchDatePickerIn' ? 'active' : ''}`}
                         onClick={ev => setSelectedModuleMiddleware(ev, 'searchDatePickerIn')}
                     >
                         <p className='header'>Check in</p>
-                        <input type='text' placeholder='Add dates' />
+                        <input
+                            type='text'
+                            placeholder='Add dates'
+                            value={searchBy.checkIn.toLocaleDateString()}
+                            readOnly
+                        />
                     </label>
                     <label
                         className={`module-btn check-out ${selectedModule === 'searchDatePickerOut' ? 'active' : ''}`}
                         onClick={ev => setSelectedModuleMiddleware(ev, 'searchDatePickerOut')}
                     >
                         <p className='header'>Check out</p>
-                        <input type='text' placeholder='Add dates' />
+                        <input
+                            type='text'
+                            placeholder='Add dates'
+                            value={searchBy.checkOut.toLocaleDateString()}
+                            readOnly
+                        />
                     </label>
                     <label
                         className={`module-btn who ${selectedModule === 'searchGuests' ? 'active' : ''}`}

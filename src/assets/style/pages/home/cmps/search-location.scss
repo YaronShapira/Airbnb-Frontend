@@ -15,6 +15,7 @@
                 margin-top: 0.5rem;
                 color: $ui-brand-color;
                 font-family: 'Cereal-Book', sans-serif;
+                text-transform: capitalize;
             }
         }
     }
@@ -32,7 +33,8 @@
         transition-property: -ms-transform, -webkit-transform, transform, background-color, border-color !important;
         transition-duration: 0.15s !important;
         transition-timing-function: ease-in-out !important;
-        &:hover {
+        &:hover,
+        &.active {
             border-color: rgb(0, 0, 0);
         }
     }

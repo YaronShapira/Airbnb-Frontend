@@ -26,6 +26,8 @@ export default function Navbar() {
         children: 0,
         infants: 0,
         pets: 0,
+        checkIn: new Date(),
+        checkOut: new Date(),
     })
     const props = { searchBy, setSearchBy, onSearch }
 

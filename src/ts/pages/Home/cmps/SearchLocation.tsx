@@ -4,20 +4,29 @@ import regionImgIT from '../../../../assets/img/regions/italy.webp'
 import regionImgFR from '../../../../assets/img/regions/france.webp'
 import regionImgSA from '../../../../assets/img/regions/south-america.webp'
 import regionImgUSA from '../../../../assets/img/regions/usa.webp'
+import { ISearchBy } from '../../../interfaces/search-by-interface'
 
 interface Props {
     isMobile?: boolean
+    searchBy: ISearchBy
+    setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
+    handleSelect: () => void
 }
 
-export default function SearchLocation({ isMobile }: Props) {
+export default function SearchLocation({ isMobile, searchBy, setSearchBy, handleSelect }: Props) {
     const regions = [
-        { id: 'all', label: "I'm Flexible", img: regionImgAll },
-        { id: 'middle-east', label: 'Middle East', img: regionImgME },
-        { id: 'italy', label: 'Italy', img: regionImgIT },
-        { id: 'south-america', label: 'South America', img: regionImgSA },
-        { id: 'france', label: 'France', img: regionImgFR },
-        { id: 'usa', label: 'United States', img: regionImgUSA },
+        { label: "i'm flexible", img: regionImgAll },
+        { label: 'middle east', img: regionImgME },
+        { label: 'italy', img: regionImgIT },
+        { label: 'south america', img: regionImgSA },
+        { label: 'france', img: regionImgFR },
+        { label: 'united states', img: regionImgUSA },
     ]
+
+    function onSelectRegion(region: string) {
+        setSearchBy(prevSearchBy => ({ ...prevSearchBy, destination: region }))
+        handleSelect()
+    }
 
     return (
         <section className='search-module search-location'>
@@ -27,8 +36,12 @@ export default function SearchLocation({ isMobile }: Props) {
                 <div className='regions'>
                     {regions.map(r => {
                         return (
-                            <div key={r.id} className='region'>
-                                <img src={r.img} alt='' className='region-img' />
+                            <div key={r.label} className='region' onClick={() => onSelectRegion(r.label)}>
+                                <img
+                                    src={r.img}
+                                    alt=''
+                                    className={`region-img ${searchBy.destination === r.label ? 'active' : ''}`}
+                                />
                                 <p className='label'>{r.label}</p>
                             </div>
                         )

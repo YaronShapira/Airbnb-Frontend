@@ -7,7 +7,7 @@
     position: relative;
 
     @media screen and (max-width: $mobile-size) {
-        grid-template-columns: 1fr 60px;
+        grid-template-columns: 1fr 40px;
     }
 
     .right,
@@ -100,6 +100,10 @@
             z-index: 2;
             align-self: flex-end;
             margin-left: auto;
+            @media screen and (max-width: $mobile-size) {
+                padding: 0.5rem;
+                border-radius: 50%;
+            }
             img {
                 width: 14px;
                 height: 14px;
