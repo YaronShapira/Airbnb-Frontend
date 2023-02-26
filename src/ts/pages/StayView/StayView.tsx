@@ -5,7 +5,7 @@ import { stayService } from '../../services/stays.service'
 import Navbar from '../../common-cmps/Navbar/Navbar'
 import StayHeader from './cmps/StayHeader'
 import StayGallery from './cmps/StayGallery'
-import StayInfo from './cmps/StayInfo'
+import StayInfo from './cmps/StayInfo/StayInfo'
 import StayReserve from './cmps/StayReserve'
 import StayReviews from './cmps/StayReviews'
 import StayMap from './cmps/StayMap'
@@ -14,7 +14,7 @@ import StayThingsToKnow from './cmps/StayThingsToKnow'
 import StayFooter from './cmps/StayFooter'
 import { utilService } from '../../services/util.service'
 import { ISkeletonStay, IStay } from '../../interfaces/stay-interface'
-import SkeletonStayView from './cmps/SkeletonStayView'
+import StaySkeletonView from './cmps/StaySkeletonView'
 
 export default function StayView() {
     const [stay, setStay] = useState<IStay | ISkeletonStay>(getSkeletonStayView())
@@ -41,14 +41,14 @@ export default function StayView() {
             console.error(err)
         }
     }
-    if (stay.type === 'skeleton') return <SkeletonStayView />
+    if (stay.type === 'skeleton') return <StaySkeletonView />
     return (
         <div className='stay-view-layout'>
             <Navbar />
             <StayHeader stay={stay as IStay} />
-            <StayGallery />
+            <StayGallery stay={stay as IStay} />
             <div className='grid'>
-                <StayInfo />
+                <StayInfo stay={stay as IStay} />
                 <StayReserve />
             </div>
             <StayReviews />

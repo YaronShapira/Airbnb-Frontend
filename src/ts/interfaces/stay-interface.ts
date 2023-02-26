@@ -23,6 +23,14 @@ export interface IStay {
         lng: number
     }
     reviews: IStayReview[]
+    likedByUsers: string[]
+    labels: string[]
+    stayDetails: {
+        guests: number
+        bedrooms: number
+        beds: number
+        bathrooms: number
+    }
 }
 
 export interface IStayReview {

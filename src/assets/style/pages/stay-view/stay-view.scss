@@ -1,1 +1,21 @@
+.stay-view-layout {
+    > .grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1rem;
+    }
+    .border-bottom {
+        border-bottom: 1px solid #e5e5e5;
+    }
+}
+@mixin stay-info-layout-padding {
+    padding-bottom: 32px;
+    padding-top: 32px;
+}
 @import './cmps/stay-header.scss';
+@import './cmps/stay-gallery.scss';
+@import './cmps/stay-info.scss';
+
+@import './cmps/stay-info-header.scss';
+@import './cmps/stay-info-bonuses.scss';
+@import './cmps/stay-info-air-cover.scss';

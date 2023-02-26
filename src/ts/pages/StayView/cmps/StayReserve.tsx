@@ -1,5 +1,3 @@
 export default function StayReserve() {
-  return (
-    <div>StayReserve</div>
-  )
+    return <div></div>
 }

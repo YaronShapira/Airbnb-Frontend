@@ -1,0 +1,36 @@
+.stay-gallery {
+    height: 541px;
+    margin-bottom: 48px;
+    img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+
+        &.main-image {
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+        }
+    }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+
+        img {
+            &:nth-of-type(1) {
+            }
+            &:nth-of-type(2) {
+                border-top-right-radius: 12px;
+            }
+            &:nth-of-type(3) {
+            }
+            &:nth-of-type(4) {
+                border-bottom-right-radius: 12px;
+            }
+        }
+    }
+}

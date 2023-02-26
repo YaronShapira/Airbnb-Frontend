@@ -1,0 +1,27 @@
+.stay-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e5e5e5;
+    h3 {
+        color: $ui-brand-color;
+        font-family: 'Cereal-Medium';
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 26px;
+        margin-bottom: 8px;
+    }
+    p {
+        color: $ui-brand-color;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    img {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+    }
+}
