@@ -12,16 +12,22 @@ import StayMap from './cmps/StayMap'
 import StayHost from './cmps/StayHost'
 import StayThingsToKnow from './cmps/StayThingsToKnow'
 import StayFooter from './cmps/StayFooter'
+import { utilService } from '../../services/util.service'
+import { ISkeletonStay, IStay } from '../../interfaces/stay-interface'
+import SkeletonStayView from './cmps/SkeletonStayView'
 
 export default function StayView() {
-    const [stay, setStay] = useState({ type: 'skeleton' })
+    const [stay, setStay] = useState<IStay | ISkeletonStay>(getSkeletonStayView())
     const { id } = useParams()
     const navigate = useNavigate()
-    console.log(stay)
 
     useEffect(() => {
         getStay()
     }, [])
+
+    function getSkeletonStayView() {
+        return { type: 'skeleton', _id: utilService.makeId() }
+    }
 
     async function getStay() {
         try {
@@ -35,11 +41,11 @@ export default function StayView() {
             console.error(err)
         }
     }
-
+    if (stay.type === 'skeleton') return <SkeletonStayView />
     return (
         <div className='stay-view-layout'>
             <Navbar />
-            <StayHeader />
+            <StayHeader stay={stay as IStay} />
             <StayGallery />
             <div className='grid'>
                 <StayInfo />

@@ -36,7 +36,7 @@ async function getStays(idx: number = 0, filterBy: IFilterBy = getEmptyFilterBy(
 
 async function getStay(_id: string) {
     const stays = await query()
-    return stays.filter((stay: IStay) => stay._id === _id)
+    return stays.find((stay: IStay) => stay._id === _id)
 }
 
 function _filterStays(stays: IStay[], filterBy: IFilterBy): IStay[] {
