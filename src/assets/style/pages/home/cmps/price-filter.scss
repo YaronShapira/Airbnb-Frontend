@@ -31,6 +31,14 @@
                 color: $text-muted;
                 top: 8px;
                 left: 10px;
+
+                &.currency {
+                    color: $ui-brand-color;
+                    top: unset;
+                    padding-top: 24.2px;
+                    font-size: 14px;
+                    font-family: 'Cereal-Medium', sans-serif;
+                }
             }
 
             input {
@@ -39,7 +47,7 @@
                 height: 56px;
                 border-radius: 7px;
                 border: 1px solid #b0b0b0;
-                padding-left: 10px;
+                padding-left: 20px;
                 padding-top: 15px;
 
                 color: $secondary-color;

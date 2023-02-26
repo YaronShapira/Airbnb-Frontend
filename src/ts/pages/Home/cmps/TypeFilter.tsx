@@ -1,4 +1,5 @@
 import { IFilterBy } from '../../../interfaces/filter-by-interface'
+import { utilService } from '../../../services/util.service'
 
 interface Props {
     filterBy: IFilterBy
@@ -8,7 +9,7 @@ interface Props {
 export default function TypeFilter({ filterBy, setFilterBy }: Props) {
     function handleCheckbox(ev: React.ChangeEvent<HTMLInputElement>) {
         const field = ev.target.name
-        setFilterBy(prevFilterBy => ({ ...prevFilterBy, type: { ...prevFilterBy.type, [field]: ev.target.checked } }))
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, types: utilService.toggleElement(prevFilterBy.types, field) }))
     }
     return (
         <div className='type-filter'>
@@ -17,9 +18,9 @@ export default function TypeFilter({ filterBy, setFilterBy }: Props) {
                 <div className='row'>
                     <input
                         type='checkbox'
-                        name='entirePlace'
+                        name='Entire home/apt'
                         id=''
-                        checked={filterBy.type.entirePlace}
+                        checked={filterBy.types.includes('Entire home/apt')}
                         onChange={handleCheckbox}
                     />
                     <div className='col'>
@@ -30,9 +31,9 @@ export default function TypeFilter({ filterBy, setFilterBy }: Props) {
                 <div className='row'>
                     <input
                         type='checkbox'
-                        name='privateRoom'
+                        name='Private room'
                         id=''
-                        checked={filterBy.type.privateRoom}
+                        checked={filterBy.types.includes('Private room')}
                         onChange={handleCheckbox}
                     />
                     <div className='col'>
@@ -40,19 +41,19 @@ export default function TypeFilter({ filterBy, setFilterBy }: Props) {
                         <p className='desc'>our own room in a home or a hotel, plus some shared common spaces</p>
                     </div>
                 </div>
-                <div className='row'>
+                {/* <div className='row'>
                     <input
                         type='checkbox'
-                        name='SharedRoom'
+                        name='sharedRoom'
                         id=''
-                        checked={filterBy.type.SharedRoom}
+                        checked={filterBy.types.includes('sharedRoom')}
                         onChange={handleCheckbox}
                     />
                     <div className='col'>
                         <p className='input-header'>Shared room</p>
                         <p className='desc'>A sleeping space and common areas that may be shared with others</p>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

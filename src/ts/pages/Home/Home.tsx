@@ -5,6 +5,7 @@ import Stays from './cmps/Stays'
 import { stayService } from '../../services/stays.service'
 import { utilService } from '../../services/util.service'
 import { IFilterBy } from '../../interfaces/filter-by-interface'
+import NoStaysMessage from './cmps/NoStaysMessage'
 
 interface ISkeletonStay {
     type: string
@@ -13,12 +14,7 @@ interface ISkeletonStay {
 
 export default function Home() {
     let [stays, setStays] = useState<any[]>(getSkeletonStays())
-    const [filterBy, setFilterBy] = useState<IFilterBy>({
-        selectedFilter: '',
-        minPrice: 20,
-        maxPrice: 1000,
-        type: { entirePlace: false, privateRoom: false, SharedRoom: false },
-    })
+    const [filterBy, setFilterBy] = useState<IFilterBy>(stayService.getEmptyFilterBy())
     const currentStayPagination = useRef(0)
 
     useEffect(() => {
@@ -54,11 +50,17 @@ export default function Home() {
         getStays()
     }
 
+    function onRemoveFilter() {
+        setFilterBy(stayService.getEmptyFilterBy())
+        onFilter()
+    }
+
     return (
         <div className='main-layout'>
             <Navbar />
             <Filters onFilter={onFilter} filterBy={filterBy} setFilterBy={setFilterBy} />
-            <Stays stays={stays} getStays={getStays} />
+            {stays.length && <Stays stays={stays} getStays={getStays} />}
+            {!stays.length && <NoStaysMessage onRemoveFilter={onRemoveFilter} />}
         </div>
     )
 }

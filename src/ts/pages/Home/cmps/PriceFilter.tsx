@@ -9,10 +9,10 @@ interface Props {
 
 export default function PriceFilter({ filterBy, setFilterBy }: Props) {
     function handleChange(ev: React.ChangeEvent<HTMLInputElement>) {
-        const value = ev.target.value.substring(2)
+        const value = ev.target.value
         if (isNaN(Number(value))) return
         const field: string = ev.target.name
-        setFilterBy(prevFilterBy => ({ ...prevFilterBy, [field]: ev.target.value.substring(2) }))
+        setFilterBy(prevFilterBy => ({ ...prevFilterBy, [field]: +value }))
     }
     return (
         <div className='price-filter'>
@@ -21,14 +21,16 @@ export default function PriceFilter({ filterBy, setFilterBy }: Props) {
             <div className='inputs'>
                 <label>
                     <p>min price</p>
-                    <input type='text' name='minPrice' value={`$ ${filterBy.minPrice}`} onChange={handleChange} />
+                    <p className='currency'>$</p>
+                    <input type='text' name='minPrice' value={filterBy.minPrice} onChange={handleChange} />
                 </label>
                 <p className='dash'>
                     <BsDash fontSize={'30px'} />
                 </p>
                 <label>
                     <p>max price</p>
-                    <input type='text' name='maxPrice' value={`$ ${filterBy.maxPrice}`} onChange={handleChange} />
+                    <p className='currency'>$</p>
+                    <input type='text' name='maxPrice' value={filterBy.maxPrice} onChange={handleChange} />
                 </label>
             </div>
         </div>

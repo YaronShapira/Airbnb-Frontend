@@ -16,7 +16,7 @@ export default function MoreFilters({ onToggleFilters, onFilterMiddleware, filte
         <>
             <div className='modal-filter'>
                 <div className='header'>
-                    <button className='close'>
+                    <button className='close' onClick={onToggleFilters}>
                         <AiOutlineClose fontSize={'16px'} />
                     </button>
                     <h4>Filters</h4>

@@ -30,8 +30,13 @@ export default function SearchDatePicker({ searchBy, setSearchBy, handleSelect }
                 minDate={new Date()}
                 rangeColors={['#ff385c']}
                 onChange={handleSelectDate}
-                // showSelectionPreview={false}
+                showMonthAndYearPickers={false}
+                showDateDisplay={false}
             />
         </section>
     )
 }
+
+// Make sure all the search functionality is working perfectly fine
+// Polish and make everything responsive on home page
+// Start on working on showcase of Stay

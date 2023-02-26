@@ -12,12 +12,13 @@ const stayIndexIncrement = 20
 export const stayService = {
     getFilters,
     getStays,
+    getEmptyFilterBy,
     stayIndexIncrement,
 }
 
 _createStays()
 
-async function getStays(idx: number = 0, filterBy: IFilterBy = _getEmptyFilterBy()): Promise<any> {
+async function getStays(idx: number = 0, filterBy: IFilterBy = getEmptyFilterBy()): Promise<any> {
     try {
         const stays = await storageService.query(STORAGE_KEY)
         const filteredStays = _filterStays(stays, filterBy)
@@ -38,27 +39,20 @@ function _filterStays(stays: any[], filterBy: IFilterBy): any[] {
     if (filterBy.maxPrice) {
         filteredStays = filteredStays.filter(stay => stay.price < filterBy.maxPrice)
     }
-    if (filterBy.type.entirePlace || filterBy.type.privateRoom) {
-        if (filterBy.type.entirePlace) {
-            filteredStays = filteredStays.filter(stay => stay.type === 'Entire home/apt')
-        }
-        if (filterBy.type.privateRoom) {
-            filteredStays = filteredStays.filter(stay => stay.type === 'Private room')
-        }
+    if (filterBy.types.length) {
+        filteredStays = filteredStays.filter(stay => {
+            return filterBy.types.includes(stay.type)
+        })
     }
     return filteredStays
 }
 
-function _getEmptyFilterBy(): IFilterBy {
+function getEmptyFilterBy(): IFilterBy {
     return {
         selectedFilter: '',
         minPrice: 20,
         maxPrice: 1000,
-        type: {
-            entirePlace: false,
-            privateRoom: false,
-            SharedRoom: false,
-        },
+        types: [],
     }
 }
 

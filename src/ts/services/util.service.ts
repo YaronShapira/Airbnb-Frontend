@@ -7,6 +7,7 @@ export const utilService = {
     formatTimeAgo,
     capitalize,
     getRandomItemFromArr,
+    toggleElement,
 }
 
 export function makeId(length: number = 6): string {
@@ -80,4 +81,8 @@ function formatTimeAgo(sentAt: number): string {
 
 function getRandomItemFromArr(arr: any[]) {
     return arr[Math.floor(Math.random() * arr.length)]
+}
+
+function toggleElement(arr: any[], val: any): any[] {
+    return arr.includes(val) ? arr.filter(el => el !== val) : [...arr, val]
 }

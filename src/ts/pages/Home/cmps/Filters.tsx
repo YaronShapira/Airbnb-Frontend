@@ -48,11 +48,9 @@ export default function Filters({ onFilter, filterBy, setFilterBy }: Props) {
     }
     function onSelectFilter(selectedFilter: string): void {
         if (filterBy.selectedFilter === selectedFilter) {
-            console.log('REMOVE')
             setFilterBy(prevFilterBy => ({ ...prevFilterBy, selectedFilter: '' }))
             filterBy.selectedFilter = ''
         } else {
-            console.log('ADD')
             setFilterBy(prevFilterBy => ({ ...prevFilterBy, selectedFilter }))
             filterBy.selectedFilter = selectedFilter
         }
