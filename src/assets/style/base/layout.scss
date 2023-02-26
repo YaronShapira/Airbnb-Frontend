@@ -20,3 +20,25 @@
         grid-column: 1 / 4;
     }
 }
+.stay-view-layout {
+    --layout-padding: 275px;
+    @media screen and (max-width: 1400px) {
+        --layout-padding: 2.5rem;
+    }
+    @media screen and (max-width: $mobile-size) {
+        --layout-padding: 24px;
+    }
+
+    display: grid;
+    grid-template-columns:
+        1fr
+        1120px
+        1fr;
+    > * {
+        grid-column: 2;
+    }
+    .full-bleed {
+        width: 100%;
+        grid-column: 1 / 4;
+    }
+}

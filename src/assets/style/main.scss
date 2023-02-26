@@ -7,10 +7,15 @@
 @import './base/helpers.scss';
 
 // COMMON
-@import './cmps/app-logo.scss';
-@import './cmps/dark-overlay.scss';
-@import './cmps/strong-dark-overlay.scss';
+// navbar
+@import './common-cmps/navbar/app-logo.scss';
+@import './common-cmps/navbar/navbar.scss';
+@import './common-cmps/navbar/mobile-navbar.scss';
+// overlay
+@import './common-cmps/overlay/dark-overlay.scss';
+@import './common-cmps/overlay/strong-dark-overlay.scss';
 
-// PAGES
+// Home
 @import './pages/home/home.scss';
-
+// StayView
+@import './pages/stay-view/stay-view.scss';

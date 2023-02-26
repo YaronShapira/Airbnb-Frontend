@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import Filters from './cmps/Filters'
-import Navbar from './cmps/Navbar'
+import Navbar from '../../common-cmps/Navbar/Navbar'
 import Stays from './cmps/Stays'
 import { stayService } from '../../services/stays.service'
 import { utilService } from '../../services/util.service'
 import { IFilterBy } from '../../interfaces/filter-by-interface'
 import NoStaysMessage from './cmps/NoStaysMessage'
+import { useNavigate } from 'react-router-dom'
 
 interface ISkeletonStay {
     type: string
@@ -16,6 +17,8 @@ export default function Home() {
     let [stays, setStays] = useState<any[]>(getSkeletonStays())
     const [filterBy, setFilterBy] = useState<IFilterBy>(stayService.getEmptyFilterBy())
     const currentStayPagination = useRef(0)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         getStays()
@@ -55,11 +58,15 @@ export default function Home() {
         onFilter()
     }
 
+    function onStay(_id: number) {
+        navigate(`stays/${_id}`)
+    }
+
     return (
         <div className='main-layout'>
             <Navbar />
             <Filters onFilter={onFilter} filterBy={filterBy} setFilterBy={setFilterBy} />
-            {stays.length && <Stays stays={stays} getStays={getStays} />}
+            {stays.length && <Stays stays={stays} getStays={getStays} onStay={onStay} />}
             {!stays.length && <NoStaysMessage onRemoveFilter={onRemoveFilter} />}
         </div>
     )

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { ISearchBy } from '../../../interfaces/search-by-interface'
+import { ISearchBy } from '../../interfaces/search-by-interface'
 import PCNavbar from './PCNavbar'
 import MobileNavbar from './MobileNavbar'
 

@@ -1,7 +1,12 @@
 import { AiFillStar } from 'react-icons/ai'
 import ImgCarousel from './ImgCarousel'
 
-export default function StayPreview({ stay }: any) {
+interface Props {
+    stay: any
+    onStay: (_id: number) => void
+}
+
+export default function StayPreview({ stay, onStay }: Props) {
     // getting the rating for the stay by going over the arr of reviews
     // reducing it and dividing by total reviews length
     const rating =
@@ -13,7 +18,7 @@ export default function StayPreview({ stay }: any) {
         }, 0) / stay.reviews.length
 
     return (
-        <article className='stay-preview'>
+        <article className='stay-preview' onClick={() => onStay(stay._id)}>
             <ImgCarousel imgUrls={stay.imgUrls} />
             <div className='details'>
                 <div className='row'>

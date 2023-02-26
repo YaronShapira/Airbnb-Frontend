@@ -2,7 +2,13 @@ import { useRef } from 'react'
 import StayPreview from './StayPreview'
 import StaySkeleton from './StaySkeleton'
 
-export default function Stays({ stays, getStays }: any) {
+interface Props {
+    stays: any[]
+    getStays: () => void
+    onStay: (_id: number) => void
+}
+
+export default function Stays({ stays, getStays, onStay }: Props) {
     const firstSkeletonRef = useRef<HTMLDivElement>(null)
     let isFirstSkelton = true
 
@@ -41,7 +47,7 @@ export default function Stays({ stays, getStays }: any) {
                         return <StaySkeleton key={stay._id} />
                     }
                 } else {
-                    return <StayPreview stay={stay} key={stay._id} />
+                    return <StayPreview stay={stay} key={stay._id} onStay={onStay}/>
                 }
             })}
         </div>

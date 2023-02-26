@@ -14,18 +14,28 @@ export const stayService = {
     getStays,
     getEmptyFilterBy,
     stayIndexIncrement,
+    getStay,
 }
 
 _createStays()
 
+async function query() {
+    return await storageService.query(STORAGE_KEY)
+}
+
 async function getStays(idx: number = 0, filterBy: IFilterBy = getEmptyFilterBy()): Promise<any> {
     try {
-        const stays = await storageService.query(STORAGE_KEY)
+        const stays = await query()
         const filteredStays = _filterStays(stays, filterBy)
         return filteredStays.slice(stayIndexIncrement * idx, stayIndexIncrement * idx + stayIndexIncrement)
     } catch (err) {
         throw err
     }
+}
+
+async function getStay(_id: string) {
+    const stays = await query()
+    return stays.filter((stay: any) => stay._id === _id)
 }
 
 function _filterStays(stays: any[], filterBy: IFilterBy): any[] {

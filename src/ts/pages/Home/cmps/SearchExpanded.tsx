@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { HiSearch } from 'react-icons/hi'
-import DarkOverlay from '../../../common-cmps/DarkOverlay'
+import DarkOverlay from '../../../common-cmps/Overlay/DarkOverlay'
 import SearchLocation from './SearchLocation'
 import SearchDatePicker from './SearchDatePicker'
 import SearchGuests from './SearchGuests'

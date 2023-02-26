@@ -1,0 +1,47 @@
+.stay-header {
+    padding-top: 24px;
+    .underline {
+        text-decoration: underline;
+    }
+    h1 {
+        font-size: 26px;
+        line-height: 30px;
+        font-family: 'Cereal-Medium';
+        font-weight: normal;
+    }
+    .row {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .about {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Cereal-Medium';
+            font-weight: 400;
+
+            .superhost {
+                font-family: 'Cereal-Book', sans-serif;
+            }
+        }
+        .btns {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            button {
+                display: flex;
+                align-items: center;
+                gap: 0.3rem;
+                background: transparent;
+                border: none;
+
+                p {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

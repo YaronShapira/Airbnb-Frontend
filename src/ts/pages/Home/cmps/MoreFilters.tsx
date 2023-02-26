@@ -1,7 +1,7 @@
 import { AiOutlineClose } from 'react-icons/ai'
 import PriceFilter from './PriceFilter'
 import TypeFilter from './TypeFilter'
-import StrongDarkOverlay from '../../../common-cmps/StrongDarkOverlay'
+import StrongDarkOverlay from '../../../common-cmps/Overlay/StrongDarkOverlay'
 import { IFilterBy } from '../../../interfaces/filter-by-interface'
 
 interface Props {

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { ISearchBy } from '../../../interfaces/search-by-interface'
+import { ISearchBy } from '../../interfaces/search-by-interface'
 import { BiSearch } from 'react-icons/bi'
-import SearchExpandedMobile from './SearchExpandedMobile'
+import SearchExpandedMobile from '../../pages/Home/cmps/SearchExpandedMobile'
 
 interface Props {
     searchBy: ISearchBy

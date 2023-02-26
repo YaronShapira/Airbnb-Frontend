@@ -9,7 +9,8 @@ interface Props {
 
 export default function ImgCarousel({ imgUrls }: Props) {
     const [imgIndex, setImgIndex] = useState<number>(0)
-    function onNextImage(inc: number) {
+    function onNextImage(ev: React.MouseEvent<HTMLButtonElement, MouseEvent>, inc: number) {
+        ev.stopPropagation()
         setImgIndex(prevImgIndex => prevImgIndex + inc)
     }
 
@@ -24,7 +25,7 @@ export default function ImgCarousel({ imgUrls }: Props) {
     return (
         <div className='img-carousel'>
             {imgIndex > 0 && (
-                <button className='carousel-btn left' onClick={() => onNextImage(-1)}>
+                <button className='carousel-btn left' onClick={ev => onNextImage(ev, -1)}>
                     <BiChevronLeft fontSize={'1.2rem'} />
                 </button>
             )}
@@ -35,8 +36,8 @@ export default function ImgCarousel({ imgUrls }: Props) {
                 })}
             </Carousel>
             {imgIndex < imgUrls.length - 1 && (
-                <button className='carousel-btn right'>
-                    <BiChevronRight fontSize={'1.2rem'} onClick={() => onNextImage(1)} />
+                <button className='carousel-btn right' onClick={ev => onNextImage(ev, 1)}>
+                    <BiChevronRight fontSize={'1.2rem'} />
                 </button>
             )}
         </div>
