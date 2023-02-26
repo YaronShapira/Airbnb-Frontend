@@ -7,14 +7,10 @@ import { utilService } from '../../services/util.service'
 import { IFilterBy } from '../../interfaces/filter-by-interface'
 import NoStaysMessage from './cmps/NoStaysMessage'
 import { useNavigate } from 'react-router-dom'
-
-interface ISkeletonStay {
-    type: string
-    _id: string
-}
+import { ISkeletonStay, IStay } from '../../interfaces/stay-interface'
 
 export default function Home() {
-    let [stays, setStays] = useState<any[]>(getSkeletonStays())
+    let [stays, setStays] = useState<IStay[] | ISkeletonStay[]>(getSkeletonStays())
     const [filterBy, setFilterBy] = useState<IFilterBy>(stayService.getEmptyFilterBy())
     const currentStayPagination = useRef(0)
 
@@ -29,7 +25,7 @@ export default function Home() {
         console.log(filterBy)
         let newStays = await stayService.getStays(currentStayPagination.current, filterBy)
         // Clean all skeletons
-        const filteredStays = stays.filter(stay => stay.name)
+        const filteredStays = (stays as IStay[]).filter((stay: IStay) => stay.name)
         if (!newStays.length) {
             // No new stays so no need for skeletons
             setStays([...filteredStays, ...newStays])
@@ -58,7 +54,7 @@ export default function Home() {
         onFilter()
     }
 
-    function onStay(_id: number) {
+    function onStay(_id: string) {
         navigate(`stays/${_id}`)
     }
 

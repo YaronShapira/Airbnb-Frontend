@@ -1,11 +1,12 @@
 import { useRef } from 'react'
 import StayPreview from './StayPreview'
 import StaySkeleton from './StaySkeleton'
+import { IStay, ISkeletonStay } from '../../../interfaces/stay-interface'
 
 interface Props {
-    stays: any[]
+    stays: IStay[] | ISkeletonStay[]
     getStays: () => void
-    onStay: (_id: number) => void
+    onStay: (_id: string) => void
 }
 
 export default function Stays({ stays, getStays, onStay }: Props) {
@@ -38,7 +39,7 @@ export default function Stays({ stays, getStays, onStay }: Props) {
 
     return (
         <div className='stays'>
-            {stays.map((stay: any) => {
+            {stays.map((stay: IStay | ISkeletonStay) => {
                 if (stay.type === 'skeleton') {
                     if (isFirstSkelton) {
                         isFirstSkelton = false
@@ -47,7 +48,7 @@ export default function Stays({ stays, getStays, onStay }: Props) {
                         return <StaySkeleton key={stay._id} />
                     }
                 } else {
-                    return <StayPreview stay={stay} key={stay._id} onStay={onStay}/>
+                    return <StayPreview stay={stay as IStay} key={stay._id} onStay={onStay} />
                 }
             })}
         </div>

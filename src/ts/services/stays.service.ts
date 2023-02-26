@@ -5,6 +5,7 @@ import minifiedStays from '../data/minified-stays.json'
 import filters from '../data/filters.json'
 import filterNames from '../data/filter-names.json'
 import { IFilterBy } from '../interfaces/filter-by-interface'
+import { IStay } from '../interfaces/stay-interface'
 
 const STORAGE_KEY: string = 'StaysDB'
 const stayIndexIncrement = 20
@@ -35,10 +36,10 @@ async function getStays(idx: number = 0, filterBy: IFilterBy = getEmptyFilterBy(
 
 async function getStay(_id: string) {
     const stays = await query()
-    return stays.filter((stay: any) => stay._id === _id)
+    return stays.filter((stay: IStay) => stay._id === _id)
 }
 
-function _filterStays(stays: any[], filterBy: IFilterBy): any[] {
+function _filterStays(stays: IStay[], filterBy: IFilterBy): IStay[] {
     let filteredStays = stays
     if (filterBy.selectedFilter) {
         filteredStays = filteredStays.filter(stay => stay.filters.includes(filterBy.selectedFilter))

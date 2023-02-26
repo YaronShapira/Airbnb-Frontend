@@ -1,16 +1,17 @@
 import { AiFillStar } from 'react-icons/ai'
 import ImgCarousel from './ImgCarousel'
+import { ISkeletonStay, IStay, IStayReview } from '../../../interfaces/stay-interface'
 
 interface Props {
-    stay: any
-    onStay: (_id: number) => void
+    stay: IStay
+    onStay: (_id: string) => void
 }
 
 export default function StayPreview({ stay, onStay }: Props) {
     // getting the rating for the stay by going over the arr of reviews
     // reducing it and dividing by total reviews length
     const rating =
-        stay.reviews.reduce((acc: number, review: any) => {
+        stay.reviews.reduce((acc: number, review: IStayReview) => {
             const values: number[] = Object.values(review.moreRate)
             const average = values.reduce((sum, value) => sum + value, 0) / values.length
 
