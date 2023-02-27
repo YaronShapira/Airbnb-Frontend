@@ -1,6 +1,8 @@
 .stay-reviews {
-    border-top: 1px solid #e5e5e5;
     @include stay-info-layout-padding();
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-top: 1px solid #e5e5e5;
 
     h3 {
         color: $ui-brand-color;
@@ -18,5 +20,11 @@
         grid-template-columns: repeat(2, 1fr);
         margin-bottom: 24px;
         gap: 16px 0px;
+    }
+
+    .reviews {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 }

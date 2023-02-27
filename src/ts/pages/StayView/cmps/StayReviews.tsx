@@ -19,7 +19,7 @@ export default function StayReviews({ stay }: Props) {
     const valueRating = stayService.getStayNicheRating(stay, 'value')
 
     return (
-        <div className='stay-reviews'>
+        <div className='border-bottom stay-reviews'>
             <h3>
                 <AiFillStar color='black' />
                 {rating.toFixed(2)} · {stay.reviews.length} reviews
@@ -32,9 +32,11 @@ export default function StayReviews({ stay }: Props) {
                 <StayReviewBar name={'Check-in'} rating={checkInRating} />
                 <StayReviewBar name={'Value'} rating={valueRating} />
             </div>
-            {stay.reviews.map((review, idx) => {
-                return <StayReview review={review} key={idx} />
-            })}
+            <div className='reviews'>
+                {stay.reviews.map((review, idx) => {
+                    return <StayReview review={review} key={idx} />
+                })}
+            </div>
         </div>
     )
 }

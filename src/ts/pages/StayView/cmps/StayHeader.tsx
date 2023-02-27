@@ -2,6 +2,7 @@ import { FiShare } from 'react-icons/fi'
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { IStay, IStayReview } from '../../../interfaces/stay-interface'
 import { stayService } from '../../../services/stays.service'
+import { FaMedal } from 'react-icons/fa'
 
 interface Props {
     stay: IStay
@@ -26,7 +27,9 @@ export default function StayHeader({ stay }: Props) {
                     <p> · </p>
                     {stay.host.isSuperHost && (
                         <>
-                            <p> ❣ </p>
+                            <p>
+                                <FaMedal />
+                            </p>
                             <p className='superhost'>Superhost</p>
                             <p> · </p>
                         </>
