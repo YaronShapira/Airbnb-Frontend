@@ -14,7 +14,10 @@ export default function SearchTeaser({ onToggleSearch, isSearchOpen }: Props) {
             <div className='seperator'></div>
             <p className='guests'>Add guests</p>
             <div className='search-icon'>
-                <BiSearch fontSize={'16px'} />
+                <img
+                    src='https://res.cloudinary.com/yaronshapira-com/image/upload/v1677535348/Airbnb/temp_og5amn.svg'
+                    alt=''
+                />
             </div>
         </div>
     )

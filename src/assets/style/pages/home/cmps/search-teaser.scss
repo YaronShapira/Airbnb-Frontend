@@ -44,8 +44,12 @@
 
     p {
         padding: 0 1rem;
+        white-space: nowrap;
     }
     .search-icon {
+        min-width: 32px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         background: $brand-color;
         color: white;
@@ -53,10 +57,16 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
+
+        img {
+            width: 12px;
+            height: 12px;
+        }
     }
     .guests {
         color: $text-muted;
         font-family: 'Cereal-Book', sans-serif;
+        padding-right: 15px;
     }
 }
 
