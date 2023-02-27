@@ -1,3 +1,3 @@
 export default function StayFooter() {
-    return <div>StayFooter</div>
+    return <div className='stay-footer'></div>
 }
