@@ -23,6 +23,10 @@
             color: #222222;
             font-family: 'Cereal-Bold', sans-serif;
             font-size: 15px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
         }
         .price {
             font-size: 15px;
