@@ -2,6 +2,7 @@ import { AiFillStar } from 'react-icons/ai'
 import { IStay } from '../../../interfaces/stay-interface'
 import { stayService } from '../../../services/stays.service'
 import StayReviewBar from './StayReviewBar'
+import StayReview from './StayReview'
 
 interface Props {
     stay: IStay
@@ -31,6 +32,9 @@ export default function StayReviews({ stay }: Props) {
                 <StayReviewBar name={'Check-in'} rating={checkInRating} />
                 <StayReviewBar name={'Value'} rating={valueRating} />
             </div>
+            {stay.reviews.map((review, idx) => {
+                return <StayReview review={review} key={idx} />
+            })}
         </div>
     )
 }

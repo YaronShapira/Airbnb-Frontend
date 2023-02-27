@@ -14,7 +14,7 @@ export default function StayReviewBar({ name, rating }: Props) {
                 <div className='bar'>
                     <div className='bar-complete' style={{ width: barWidth }}></div>
                 </div>
-                <p>{rating.toFixed(1)}</p>
+                <p className="rating">{rating.toFixed(1)}</p>
             </div>
         </div>
     )

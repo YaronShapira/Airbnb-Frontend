@@ -8,7 +8,7 @@
     .bar-wrapper {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 6px;
         width: 50%;
 
         .bar {
@@ -28,6 +28,14 @@
                 border-radius: 2px;
                 width: 0%;
             }
+        }
+        .rating {
+            font-family: 'Cereal-Medium';
+            color: $ui-brand-color;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 16px;
+            margin-left: 6px;
         }
     }
 }

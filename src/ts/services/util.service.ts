@@ -8,6 +8,7 @@ export const utilService = {
     capitalize,
     getRandomItemFromArr,
     toggleElement,
+    formatMonthYear,
 }
 
 export function makeId(length: number = 6): string {
@@ -85,4 +86,11 @@ function getRandomItemFromArr(arr: any[]) {
 
 function toggleElement(arr: any[], val: any): any[] {
     return arr.includes(val) ? arr.filter(el => el !== val) : [...arr, val]
+}
+
+function formatMonthYear(timestamp: Date) {
+    const date = new Date(timestamp)
+    const month = date.toLocaleString('default', { month: 'long' })
+    const year = date.getFullYear()
+    return `${month} ${year}`
 }
