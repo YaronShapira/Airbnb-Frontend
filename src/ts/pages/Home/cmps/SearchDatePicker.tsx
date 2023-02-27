@@ -36,7 +36,3 @@ export default function SearchDatePicker({ searchBy, setSearchBy, handleSelect }
         </section>
     )
 }
-
-// Make sure all the search functionality is working perfectly fine
-// Polish and make everything responsive on home page
-// Start on working on showcase of Stay

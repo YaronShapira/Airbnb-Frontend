@@ -14,12 +14,12 @@ interface Props {
 export default function StayInfo({ stay }: Props) {
     return (
         <div className='stay-info'>
-            <StayInfoHeader stay={stay}/>
+            <StayInfoHeader stay={stay} />
             <StayInfoBonuses />
             <StayInfoAirCover />
-            <StayInfoSummary />
+            <StayInfoSummary stay={stay} />
             <StayInfoSleep />
-            <StayInfoOffering />
+            <StayInfoOffering stay={stay} />
             <StayInfoCalendar />
         </div>
     )

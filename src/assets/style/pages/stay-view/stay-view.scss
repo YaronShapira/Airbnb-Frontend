@@ -2,7 +2,7 @@
     > .grid {
         display: grid;
         grid-template-columns: 2fr 1fr;
-        gap: 1rem;
+        gap: 5rem;
     }
     .border-bottom {
         border-bottom: 1px solid #e5e5e5;
@@ -19,3 +19,10 @@
 @import './cmps/stay-info-header.scss';
 @import './cmps/stay-info-bonuses.scss';
 @import './cmps/stay-info-air-cover.scss';
+@import './cmps/stay-info-summary.scss';
+@import './cmps/stay-info-sleep.scss';
+@import './cmps/stay-info-offering.scss';
+@import './cmps/stay-info-calendar.scss';
+
+@import './cmps/stay-reviews.scss';
+@import './cmps/stay-review-bar.scss';

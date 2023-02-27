@@ -51,7 +51,7 @@ export default function StayView() {
                 <StayInfo stay={stay as IStay} />
                 <StayReserve />
             </div>
-            <StayReviews />
+            <StayReviews stay={stay as IStay} />
             <StayMap />
             <StayHost />
             <StayThingsToKnow />

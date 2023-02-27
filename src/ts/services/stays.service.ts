@@ -5,10 +5,11 @@ import minifiedStays from '../data/minified-stays.json'
 import filters from '../data/filters.json'
 import filterNames from '../data/filter-names.json'
 import { IFilterBy } from '../interfaces/filter-by-interface'
-import { IStay } from '../interfaces/stay-interface'
+import { IStay, IStayReview } from '../interfaces/stay-interface'
 
 const STORAGE_KEY: string = 'StaysDB'
 const stayIndexIncrement = 20
+const NICHE_RATING_STRINGS = ['cleanliness', 'accuracy', 'communication', 'location', 'checkIn', 'value']
 
 export const stayService = {
     getFilters,
@@ -16,6 +17,8 @@ export const stayService = {
     getEmptyFilterBy,
     stayIndexIncrement,
     getStay,
+    getStayRating,
+    getStayNicheRating,
 }
 
 _createStays()
@@ -37,6 +40,26 @@ async function getStays(idx: number = 0, filterBy: IFilterBy = getEmptyFilterBy(
 async function getStay(_id: string) {
     const stays = await query()
     return stays.find((stay: IStay) => stay._id === _id)
+}
+
+function getStayRating(stay: IStay) {
+    return (
+        stay.reviews.reduce((acc: number, review: IStayReview) => {
+            const values: number[] = Object.values(review.moreRate)
+            const average = values.reduce((sum, value) => sum + value, 0) / values.length
+
+            return acc + average
+        }, 0) / stay.reviews.length
+    )
+}
+
+function getStayNicheRating(stay: IStay, nicheRating: string) {
+    if (!NICHE_RATING_STRINGS.includes(nicheRating)) return 0
+    return (
+        stay.reviews.reduce((acc: number, review: IStayReview) => {
+            return acc + review.moreRate[nicheRating]
+        }, 0) / stay.reviews.length
+    )
 }
 
 function _filterStays(stays: IStay[], filterBy: IFilterBy): IStay[] {

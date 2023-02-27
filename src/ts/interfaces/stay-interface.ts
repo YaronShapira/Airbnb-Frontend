@@ -43,14 +43,17 @@ export interface IStayReview {
     }
     txt: string
     id: string
-    moreRate: {
-        cleanliness: number
-        accuracy: number
-        communication: number
-        location: number
-        checkIn: number
-        value: number
-    }
+    moreRate: IMoreRate
+}
+
+export interface IMoreRate {
+    [key: string]: number
+    cleanliness: number
+    accuracy: number
+    communication: number
+    location: number
+    checkIn: number
+    value: number
 }
 
 export interface ISkeletonStay {

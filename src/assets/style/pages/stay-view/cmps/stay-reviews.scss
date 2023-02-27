@@ -1,0 +1,22 @@
+.stay-reviews {
+    border-top: 1px solid #e5e5e5;
+    @include stay-info-layout-padding();
+
+    h3 {
+        color: $ui-brand-color;
+        font-family: 'Cereal-Medium';
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 26px;
+        display: flex;
+        gap: 0.4rem;
+        align-items: center;
+        margin-bottom: 32px;
+    }
+    .review-bars {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 24px;
+        gap: 16px 0px;
+    }
+}
