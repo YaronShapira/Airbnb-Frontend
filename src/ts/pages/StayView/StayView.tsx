@@ -14,7 +14,7 @@ import StayThingsToKnow from './cmps/StayThingsToKnow'
 import StayFooter from './cmps/StayFooter'
 import { utilService } from '../../services/util.service'
 import { ISkeletonStay, IStay } from '../../interfaces/stay-interface'
-import StaySkeletonView from './cmps/StaySkeletonView'
+import StaySkeletonView from './cmps/StaySkeletonView/StaySkeletonView'
 
 export default function StayView() {
     const [stay, setStay] = useState<IStay | ISkeletonStay>(getSkeletonStayView())
@@ -47,7 +47,7 @@ export default function StayView() {
             <Navbar />
             <StayHeader stay={stay as IStay} />
             <StayGallery stay={stay as IStay} />
-            <div className='grid'>
+            <div className='stay-view-separator'>
                 <StayInfo stay={stay as IStay} />
                 <StayReserve />
             </div>
@@ -59,3 +59,12 @@ export default function StayView() {
         </div>
     )
 }
+
+// add stay reserve
+// add stay skeleton
+// make everything accurate in stay listings
+// work on responsiveness of StayView
+// add different search teaser for StayView
+// work on plain search functionality
+// add show map
+// add search map

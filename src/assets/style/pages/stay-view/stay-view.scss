@@ -1,5 +1,5 @@
 .stay-view-layout {
-    > .grid {
+    .stay-view-separator {
         display: grid;
         grid-template-columns: 2fr 1fr;
         gap: 5rem;
@@ -30,3 +30,5 @@
 @import './cmps/stay-map.scss';
 @import './cmps/stay-host.scss';
 @import './cmps/stay-things-to-know.scss';
+
+@import './cmps/stay-skeleton-view.scss';
