@@ -5,6 +5,8 @@
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
     font-size: 16px;
     line-height: 20px;
+    height: fit-content;
+
     .pricing {
         display: flex;
         -webkit-box-pack: var(--pricing-guest-display-price-alignment, flex-start);
@@ -155,6 +157,11 @@
             display: flex;
             flex-wrap: nowrap;
             justify-content: space-between;
+
+            p:first-child {
+                text-decoration: underline;
+                text-decoration-thickness: 1px;
+            }
 
             &:last-of-type {
                 padding-top: 16px;

@@ -1,3 +1,16 @@
 .stay-info-calendar {
     @include stay-info-layout-padding();
+
+    .rdrCalendarWrapper.rdrDateRangeWrapper {
+        width: 400px !important;
+    }
+    .rdrMonthAndYearWrapper {
+        width: 400px !important;
+    }
+    .rdrMonths.rdrMonthsVertical {
+        width: 400px !important;
+    }
+    .rdrMonth {
+        width: 400px !important;
+    }
 }
