@@ -6,34 +6,28 @@ import SearchLocation from './SearchLocation'
 import SearchDatePicker from './SearchDatePicker'
 import SearchGuests from './SearchGuests'
 import { ISearchBy } from '../../../interfaces/search-by-interface'
+import { utilService } from '../../../services/util.service'
 
 const searchIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/upload/v1676904049/Airbnb/temp_vysd1h.svg'
 interface Props {
     isSearchOpen: boolean
     onToggleSearch: () => void
     searchBy: ISearchBy
-    setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
+    updateSearchBy: (ISearchBy: ISearchBy) => void
     onSearch: (ev: React.MouseEvent<HTMLButtonElement>) => void
 }
 interface ModuleMap {
     [key: string]: React.ReactNode
 }
 
-export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy, setSearchBy, onSearch }: Props) {
+export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy, updateSearchBy, onSearch }: Props) {
     const [selectedExperience, setSelectedExperience] = useState<string>('Stays')
     const [selectedModule, setSelectedModule] = useState<string>('')
 
     function handleGuestsCounter(inc: number, searchByField: string) {
         const updatedField = +searchBy[searchByField] + inc
-
-        setSearchBy(prevSearchBy => ({ ...prevSearchBy, [searchByField]: updatedField }))
-    }
-
-    function guestsCountFormatted() {
-        const guestsCount = searchBy.adults + searchBy.children + searchBy.infants + searchBy.pets
-        if (guestsCount === 0) return ''
-        if (guestsCount === 1) return '1 guest'
-        else return `${guestsCount} guests`
+        updateSearchBy({ ...searchBy, [searchByField]: updatedField })
+        // updateSearchBy(prevSearchBy => ({ ...prevSearchBy, [searchByField]: updatedField }))
     }
 
     function setSelectedModuleMiddleware(ev: React.MouseEvent<HTMLLabelElement, MouseEvent>, module: string) {
@@ -64,12 +58,14 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy,
     }
 
     const moduleMap: ModuleMap = {
-        searchLocation: <SearchLocation searchBy={searchBy} setSearchBy={setSearchBy} handleSelect={handleSelect} />,
+        searchLocation: (
+            <SearchLocation searchBy={searchBy} updateSearchBy={updateSearchBy} handleSelect={handleSelect} />
+        ),
         searchDatePickerIn: (
-            <SearchDatePicker searchBy={searchBy} setSearchBy={setSearchBy} handleSelect={handleSelect} />
+            <SearchDatePicker searchBy={searchBy} updateSearchBy={updateSearchBy} handleSelect={handleSelect} />
         ),
         searchDatePickerOut: (
-            <SearchDatePicker searchBy={searchBy} setSearchBy={setSearchBy} handleSelect={handleSelect} />
+            <SearchDatePicker searchBy={searchBy} updateSearchBy={updateSearchBy} handleSelect={handleSelect} />
         ),
         searchGuests: <SearchGuests handleGuestsCounter={handleGuestsCounter} searchBy={searchBy} />,
     }
@@ -134,7 +130,12 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy,
                     >
                         <div className='col'>
                             <p className='header'>Who</p>
-                            <input type='text' placeholder='Add guests' value={guestsCountFormatted()} readOnly />
+                            <input
+                                type='text'
+                                placeholder='Add guests'
+                                value={utilService.guestsCountFormatted(searchBy)}
+                                readOnly
+                            />
                         </div>
                         <button className='search-btn' onClick={onSearch}>
                             <img src={searchIconSrc} alt='' /> Search

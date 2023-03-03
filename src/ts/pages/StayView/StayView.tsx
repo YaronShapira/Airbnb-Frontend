@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-
+import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { stayService } from '../../services/stays.service'
 import Navbar from '../../common-cmps/Navbar/Navbar'
@@ -15,15 +15,26 @@ import StayFooter from './cmps/StayFooter'
 import { utilService } from '../../services/util.service'
 import { ISkeletonStay, IStay } from '../../interfaces/stay-interface'
 import StaySkeletonView from './cmps/StaySkeletonView/StaySkeletonView'
+import { ISearchBy } from '../../interfaces/search-by-interface'
+import { setSearchBy } from '../../store/stay/stay.action'
 
 export default function StayView() {
     const [stay, setStay] = useState<IStay | ISkeletonStay>(getSkeletonStayView())
+    const searchBy: ISearchBy = useSelector((storeState: any) => storeState.stayModule.searchBy)
     const { id } = useParams()
     const navigate = useNavigate()
 
     useEffect(() => {
         getStay()
+        prepareSearchBy()
     }, [])
+
+    function prepareSearchBy() {
+        if (searchBy.adults <= 0) {
+            searchBy.adults = 1
+            setSearchBy(searchBy)
+        }
+    }
 
     function getSkeletonStayView() {
         return { type: 'skeleton', _id: utilService.makeId() }
@@ -49,7 +60,7 @@ export default function StayView() {
             <StayGallery stay={stay as IStay} />
             <div className='stay-view-separator'>
                 <StayInfo stay={stay as IStay} />
-                <StayReserve />
+                <StayReserve stay={stay as IStay} searchBy={searchBy} />
             </div>
             <StayReviews stay={stay as IStay} />
             <StayMap stay={stay as IStay} />
@@ -60,8 +71,7 @@ export default function StayView() {
     )
 }
 
-// add stay reserve
-// add stay skeleton
+// add searchBy to redux
 // make everything accurate in stay listings
 // work on responsiveness of StayView
 // add different search teaser for StayView

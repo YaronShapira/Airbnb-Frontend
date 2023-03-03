@@ -2,9 +2,17 @@ import { useState, useEffect } from 'react'
 import { ISearchBy } from '../../interfaces/search-by-interface'
 import PCNavbar from './PCNavbar'
 import MobileNavbar from './MobileNavbar'
+import { useSelector } from 'react-redux'
+import { setSearchBy } from '../../store/stay/stay.action'
+import { useNavigate } from 'react-router-dom'
+
+interface Props {}
 
 export default function Navbar() {
     const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 750)
+    const searchBy: ISearchBy = useSelector((storeState: any) => storeState.stayModule.searchBy)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         function handleResize() {
@@ -14,22 +22,24 @@ export default function Navbar() {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
-    function onSearch(ev: React.MouseEvent<HTMLButtonElement>) {
-        ev.preventDefault()
-        ev.stopPropagation()
-        console.log(searchBy)
+    function updateSearchBy(searchBy: ISearchBy): void {
+        setSearchBy(searchBy)
     }
 
-    const [searchBy, setSearchBy] = useState<ISearchBy>({
-        destination: '',
-        adults: 0,
-        children: 0,
-        infants: 0,
-        pets: 0,
-        checkIn: new Date(),
-        checkOut: new Date(),
-    })
-    const props = { searchBy, setSearchBy, onSearch }
+    function onSearchMiddleware(ev: React.MouseEvent<HTMLButtonElement>) {
+        ev.stopPropagation()
+        ev.preventDefault()
+
+        navigate(
+            `/Airbnb-Frontend/?destination=${
+                searchBy.destination
+            }&check-in=${searchBy.checkIn.getTime()}&check-out=${searchBy.checkOut.getTime()}&adults=${
+                searchBy.adults
+            }&children=${searchBy.children}&infants=${searchBy.infants}&pets=${searchBy.pets}`
+        )
+    }
+
+    const props = { searchBy, updateSearchBy, onSearch: onSearchMiddleware }
 
     return <>{isMobile ? <MobileNavbar {...props} /> : <PCNavbar {...props} />}</>
 }

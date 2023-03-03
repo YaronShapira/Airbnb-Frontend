@@ -5,22 +5,18 @@ import { ISearchBy } from '../../../interfaces/search-by-interface'
 
 interface Props {
     searchBy: ISearchBy
-    setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
+    updateSearchBy: (ISearchBy: ISearchBy) => void
     handleSelect: () => void
 }
 
-export default function SearchDatePicker({ searchBy, setSearchBy, handleSelect }: Props) {
+export default function SearchDatePicker({ searchBy, updateSearchBy, handleSelect }: Props) {
     const selectionRange = {
         startDate: searchBy.checkIn,
         endDate: searchBy.checkOut,
         key: 'selection',
     }
     function handleSelectDate(ranges: any) {
-        setSearchBy(prevSearchBy => ({
-            ...prevSearchBy,
-            checkIn: ranges.selection.startDate,
-            checkOut: ranges.selection.endDate,
-        }))
+        updateSearchBy({ ...searchBy, checkIn: ranges.selection.startDate, checkOut: ranges.selection.endDate })
         handleSelect()
     }
     return (

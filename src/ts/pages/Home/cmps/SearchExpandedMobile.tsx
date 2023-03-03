@@ -10,11 +10,17 @@ interface Props {
     isSearchOpen: boolean
     onToggleSearch: () => void
     searchBy: ISearchBy
-    setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
+    updateSearchBy: (ISearchBy: ISearchBy) => void
     onSearch: (ev: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, searchBy, setSearchBy, onSearch }: Props) {
+export default function SearchExpandedMobile({
+    isSearchOpen,
+    onToggleSearch,
+    searchBy,
+    updateSearchBy,
+    onSearch,
+}: Props) {
     const [selectedExperience, setSelectedExperience] = useState<string>('Stays')
     const [selectedModule, setSelectedModule] = useState<string>('')
 
@@ -28,8 +34,8 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
 
     function handleGuestsCounter(inc: number, searchByField: string) {
         const updatedField = +searchBy[searchByField] + inc
-
-        setSearchBy(prevSearchBy => ({ ...prevSearchBy, [searchByField]: updatedField }))
+        updateSearchBy({ ...searchBy, [searchByField]: updatedField })
+        // updateSearchBy(prevSearchBy => ({ ...prevSearchBy, [searchByField]: updatedField }))
     }
 
     function guestsCountFormatted() {
@@ -89,7 +95,7 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
                     <SearchLocation
                         isMobile={true}
                         searchBy={searchBy}
-                        setSearchBy={setSearchBy}
+                        updateSearchBy={updateSearchBy}
                         handleSelect={handleSelect}
                     />
                 )}
@@ -100,7 +106,7 @@ export default function SearchExpandedMobile({ isSearchOpen, onToggleSearch, sea
                     </div>
                 )}
                 {selectedModule === 'searchDatePicker' && (
-                    <SearchDatePicker searchBy={searchBy} setSearchBy={setSearchBy} handleSelect={() => {}} />
+                    <SearchDatePicker searchBy={searchBy} updateSearchBy={updateSearchBy} handleSelect={() => {}} />
                 )}
                 {selectedModule !== 'searchGuests' && (
                     <div className='tab' onClick={ev => setSelectedModuleMiddleware(ev, 'searchGuests')}>

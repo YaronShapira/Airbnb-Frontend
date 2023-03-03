@@ -6,24 +6,26 @@ import { stayService } from '../../services/stays.service'
 import { utilService } from '../../services/util.service'
 import { IFilterBy } from '../../interfaces/filter-by-interface'
 import NoStaysMessage from './cmps/NoStaysMessage'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ISkeletonStay, IStay } from '../../interfaces/stay-interface'
 
 export default function Home() {
     let [stays, setStays] = useState<IStay[] | ISkeletonStay[]>(getSkeletonStays())
     const [filterBy, setFilterBy] = useState<IFilterBy>(stayService.getEmptyFilterBy())
     const currentStayPagination = useRef(0)
+    const { search } = useLocation()
+
+    useEffect(() => {
+        onGetNewStays()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [search])
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        getStays()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    const searchBy = utilService.getQueryParams()
 
     async function getStays() {
-        console.log(filterBy)
-        let newStays = await stayService.getStays(currentStayPagination.current, filterBy)
+        let newStays = await stayService.getStays(currentStayPagination.current, filterBy, searchBy)
         // Clean all skeletons
         const filteredStays = (stays as IStay[]).filter((stay: IStay) => stay.name)
         if (!newStays.length) {
@@ -42,7 +44,7 @@ export default function Home() {
         }
         return res
     }
-    function onFilter(): void {
+    function onGetNewStays(): void {
         currentStayPagination.current = 0
         stays = []
         setStays(getSkeletonStays())
@@ -51,7 +53,7 @@ export default function Home() {
 
     function onRemoveFilter() {
         setFilterBy(stayService.getEmptyFilterBy())
-        onFilter()
+        onGetNewStays()
     }
 
     function onStay(_id: string) {
@@ -61,7 +63,7 @@ export default function Home() {
     return (
         <div className='main-layout'>
             <Navbar />
-            <Filters onFilter={onFilter} filterBy={filterBy} setFilterBy={setFilterBy} />
+            <Filters onFilter={onGetNewStays} filterBy={filterBy} setFilterBy={setFilterBy} />
             {stays.length && <Stays stays={stays} getStays={getStays} onStay={onStay} />}
             {!stays.length && <NoStaysMessage onRemoveFilter={onRemoveFilter} />}
         </div>

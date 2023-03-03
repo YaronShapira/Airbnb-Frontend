@@ -1,3 +1,5 @@
+import { ISearchBy } from '../interfaces/search-by-interface'
+
 export const utilService = {
     makeId,
     getRandomIntInclusive,
@@ -9,6 +11,9 @@ export const utilService = {
     getRandomItemFromArr,
     toggleElement,
     formatMonthYear,
+    guestsCountFormatted,
+    getQueryParams,
+    isObjectEmpty,
 }
 
 export function makeId(length: number = 6): string {
@@ -34,7 +39,6 @@ function getRandomIntInclusive(min: number, max: number): number {
 
 function randomPastTime(): number {
     const HOUR = 1000 * 60 * 60
-    const DAY = 1000 * 60 * 60 * 24
     const WEEK = 1000 * 60 * 60 * 24 * 7
 
     const pastTime = getRandomIntInclusive(HOUR, WEEK)
@@ -93,4 +97,24 @@ function formatMonthYear(timestamp: Date) {
     const month = date.toLocaleString('default', { month: 'long' })
     const year = date.getFullYear()
     return `${month} ${year}`
+}
+
+function guestsCountFormatted(searchBy: ISearchBy) {
+    const guestsCount = searchBy.adults + searchBy.children + searchBy.infants + searchBy.pets
+    if (guestsCount === 0) return ''
+    if (guestsCount === 1) return '1 guest'
+    else return `${guestsCount} guests`
+}
+
+function getQueryParams(url = null) {
+    const paramsObj = new URLSearchParams(url ? url : window.location.search)
+    let newObj: any = {}
+    for (const [key, value] of paramsObj) {
+        newObj[key] = value
+    }
+    return newObj
+}
+
+function isObjectEmpty(obj: any) {
+    return Object.keys(obj).length === 0
 }

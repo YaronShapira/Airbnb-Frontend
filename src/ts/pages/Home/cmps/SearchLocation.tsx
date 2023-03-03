@@ -9,11 +9,11 @@ import { ISearchBy } from '../../../interfaces/search-by-interface'
 interface Props {
     isMobile?: boolean
     searchBy: ISearchBy
-    setSearchBy: React.Dispatch<React.SetStateAction<ISearchBy>>
+    updateSearchBy: (ISearchBy: ISearchBy) => void
     handleSelect: () => void
 }
 
-export default function SearchLocation({ isMobile, searchBy, setSearchBy, handleSelect }: Props) {
+export default function SearchLocation({ isMobile, searchBy, updateSearchBy, handleSelect }: Props) {
     const regions = [
         { label: "i'm flexible", img: regionImgAll },
         { label: 'middle east', img: regionImgME },
@@ -24,7 +24,8 @@ export default function SearchLocation({ isMobile, searchBy, setSearchBy, handle
     ]
 
     function onSelectRegion(region: string) {
-        setSearchBy(prevSearchBy => ({ ...prevSearchBy, destination: region }))
+        updateSearchBy({ ...searchBy, destination: region })
+        // setSearchBy(prevSearchBy => ({ ...prevSearchBy, destination: region }))
         handleSelect()
     }
 

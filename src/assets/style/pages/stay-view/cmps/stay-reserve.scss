@@ -6,6 +6,67 @@
     font-size: 16px;
     line-height: 20px;
     height: fit-content;
+    position: relative;
+
+    .calendar-wrapper {
+        padding: 1rem;
+        border-radius: 16px !important;
+        box-shadow: rgb(0 0 0 / 20%) 0px 6px 20px !important;
+        position: absolute;
+        background-color: white;
+        z-index: 5;
+        right: 0%;
+        bottom: 0%;
+        display: flex;
+        flex-direction: column;
+
+        .close {
+            border-radius: 8px;
+            border-width: 1px;
+            border-style: solid;
+            transition: box-shadow 0.2s ease, transform 0.1s ease;
+            border: none;
+            background: $ui-brand-color;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 16px;
+            padding-right: 16px;
+            margin-left: auto;
+            font-family: 'Cereal-Medium';
+            color: white;
+        }
+    }
+    .guests-wrapper {
+        position: absolute;
+        // background-color: white;
+        border: none;
+        z-index: 5;
+        right: 6%;
+        top: 39.5%;
+        display: flex;
+        flex-direction: column;
+
+        .search-guests {
+            top: 0%;
+            position: unset;
+        }
+
+        .close {
+            border-radius: 8px;
+            border-width: 1px;
+            border-style: solid;
+            transition: box-shadow 0.2s ease, transform 0.1s ease;
+            border: none;
+            background: $ui-brand-color;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 16px;
+            padding-right: 16px;
+            margin-left: auto;
+            font-family: 'Cereal-Medium';
+            color: white;
+        }
+    }
 
     .pricing {
         display: flex;
@@ -49,6 +110,7 @@
     .reserve-picker {
         margin-bottom: 16px;
         border-radius: 8px;
+        position: relative;
 
         .dates {
             display: grid;

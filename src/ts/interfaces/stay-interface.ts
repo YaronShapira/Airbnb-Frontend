@@ -21,6 +21,7 @@ export interface IStay {
         address: string
         lat: number
         lng: number
+        destination: string
     }
     reviews: IStayReview[]
     likedByUsers: string[]
