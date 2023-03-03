@@ -9,14 +9,11 @@ interface Props {
     searchBy: ISearchBy
     updateSearchBy: (ISearchBy: ISearchBy) => void
     onSearch: (ev: React.MouseEvent<HTMLButtonElement>) => void
+    onToggleSearch: () => void
+    isSearchOpen: boolean
 }
 
-export default function PCNavbar({ searchBy, updateSearchBy, onSearch }: Props) {
-    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
-
-    function onToggleSearch(): void {
-        setIsSearchOpen(prevState => !prevState)
-    }
+export default function PCNavbar({ searchBy, updateSearchBy, onSearch, onToggleSearch, isSearchOpen }: Props) {
     return (
         <>
             <nav className={`navbar ${isSearchOpen ? 'expanded' : ''}`}>

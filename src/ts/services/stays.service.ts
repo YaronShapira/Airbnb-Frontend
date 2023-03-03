@@ -22,6 +22,7 @@ export const stayService = {
     getStayRating,
     getStayNicheRating,
     getEmptySearchBy,
+    getSearchByFromParams,
 }
 
 _createStays()
@@ -83,6 +84,19 @@ function _filterStays(stays: IStay[], filterBy: IFilterBy): IStay[] {
         })
     }
     return filteredStays
+}
+
+function getSearchByFromParams() {
+    const searchBy = utilService.getQueryParams()
+    if (utilService.isObjectEmpty(searchBy)) return stayService.getEmptySearchBy()
+
+    searchBy['checkIn'] = new Date(+searchBy['checkIn'])
+    searchBy['checkOut'] = new Date(+searchBy['checkOut'])
+    searchBy['adults'] = +searchBy['adults']
+    searchBy['infants'] = +searchBy['infants']
+    searchBy['pets'] = +searchBy['pets']
+    searchBy['children'] = +searchBy['children']
+    return searchBy
 }
 
 function _searchStays(stays: IStay[], searchBy: ISearchBy) {

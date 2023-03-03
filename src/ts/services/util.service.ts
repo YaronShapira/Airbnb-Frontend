@@ -1,4 +1,5 @@
 import { ISearchBy } from '../interfaces/search-by-interface'
+import { stayService } from './stays.service'
 
 export const utilService = {
     makeId,
@@ -110,11 +111,16 @@ function getQueryParams(url = null) {
     const paramsObj = new URLSearchParams(url ? url : window.location.search)
     let newObj: any = {}
     for (const [key, value] of paramsObj) {
-        newObj[key] = value
+        newObj[snakeToCamel(key)] = value
+        console.log(snakeToCamel(key))
     }
     return newObj
 }
 
 function isObjectEmpty(obj: any) {
     return Object.keys(obj).length === 0
+}
+
+function snakeToCamel(s: string): string {
+    return s.replace(/([-_]\w)/g, g => g[1].toUpperCase())
 }

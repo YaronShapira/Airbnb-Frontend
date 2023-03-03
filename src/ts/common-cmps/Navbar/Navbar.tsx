@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 interface Props {}
 
 export default function Navbar() {
+    const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
     const isMobile = useSelector((storeState: any) => storeState.appModule.isMobile)
     const searchBy: ISearchBy = useSelector((storeState: any) => storeState.stayModule.searchBy)
 
@@ -18,9 +19,14 @@ export default function Navbar() {
         setSearchBy(searchBy)
     }
 
+    function onToggleSearch(): void {
+        setIsSearchOpen(prevState => !prevState)
+    }
+
     function onSearchMiddleware(ev: React.MouseEvent<HTMLButtonElement>) {
         ev.stopPropagation()
         ev.preventDefault()
+        setIsSearchOpen(false)
 
         navigate(
             `/Airbnb-Frontend/?destination=${
@@ -31,7 +37,7 @@ export default function Navbar() {
         )
     }
 
-    const props = { searchBy, updateSearchBy, onSearch: onSearchMiddleware }
+    const props = { isSearchOpen, searchBy, onToggleSearch, updateSearchBy, onSearch: onSearchMiddleware }
 
     return <>{isMobile ? <MobileNavbar {...props} /> : <PCNavbar {...props} />}</>
 }
