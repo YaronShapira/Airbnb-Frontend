@@ -56,7 +56,7 @@ export default function StayView() {
     return (
         <div className='stay-view-layout'>
             <Navbar />
-            <div className='heading full-bleed'>
+            <div className='heading'>
                 <StayHeader stay={stay as IStay} />
                 <StayGallery stay={stay as IStay} />
             </div>

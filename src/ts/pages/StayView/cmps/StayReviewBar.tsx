@@ -5,7 +5,6 @@ interface Props {
 
 export default function StayReviewBar({ name, rating }: Props) {
     const barWidth = `${(rating / 5) * 100}%`
-    console.log(barWidth)
 
     return (
         <div className='stay-review-bar'>

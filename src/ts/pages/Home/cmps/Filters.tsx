@@ -54,7 +54,6 @@ export default function Filters({ onFilter, filterBy, setFilterBy }: Props) {
             setFilterBy(prevFilterBy => ({ ...prevFilterBy, selectedFilter }))
             filterBy.selectedFilter = selectedFilter
         }
-        // console.log(selectedFilter)
 
         onFilter()
     }

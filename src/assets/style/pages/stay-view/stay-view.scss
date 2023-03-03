@@ -15,10 +15,13 @@
 
     .heading {
         @media screen and (max-width: $mobile-size) {
+            width: 100%;
+            grid-column: 1 / 4;
             display: flex;
             flex-direction: column;
 
             .stay-gallery {
+                margin-top: 14px;
                 order: -1;
                 margin-bottom: 0;
                 display: block;

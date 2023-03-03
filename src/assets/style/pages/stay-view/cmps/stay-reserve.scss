@@ -8,6 +8,35 @@
     height: fit-content;
     position: relative;
 
+    transition: bottom 0.7s ease;
+
+    .close-btn {
+        position: absolute;
+        right: 0%;
+        top: 0%;
+        margin: 24px;
+
+        button {
+            background: transparent;
+            border: none;
+            margin-top: 0.3rem;
+        }
+    }
+
+    &.expanded {
+        bottom: 0%;
+    }
+
+    @media screen and (max-width: $mobile-size) {
+        position: fixed;
+        bottom: -50%;
+        border-radius: 0%;
+        background: white;
+        width: 100%;
+        left: 0%;
+        z-index: 5;
+    }
+
     .calendar-wrapper {
         padding: 1rem;
         border-radius: 16px !important;
@@ -45,6 +74,24 @@
         top: 39.5%;
         display: flex;
         flex-direction: column;
+        width: 100%;
+
+        @media screen and (max-width: $mobile-size) {
+            top: unset;
+            bottom: 0%;
+            right: 50%;
+            transform: translateX(50%);
+
+            .search-guests {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .row {
+                    min-width: 100%;
+                }
+            }
+        }
 
         .search-guests {
             top: 0%;
@@ -79,19 +126,6 @@
         justify-content: var(--pricing-guest-display-price-alignment, flex-start);
         flex-wrap: var(--pricing-guest-display-price-flex-wrap, wrap);
         margin-bottom: 24px;
-
-        --pricing-guest-primary-line-font-size: 22px;
-        --pricing-guest-primary-line-line-height: 26px;
-        --pricing-guest-primary-line-unit-price-font-weight: 600;
-        --pricing-guest-primary-line-trailing-content-font-size: 14px;
-        --pricing-guest-secondary-line-font-size: 14px;
-        --pricing-guest-secondary-line-line-height: 18px;
-        --pricing-guest-secondary-line-color: #222222;
-        --pricing-guest-explanation-disclaimer-font-size: 14px;
-        --pricing-guest-explanation-disclaimer-line-height: 18px;
-        --pricing-guest-primary-line-strikethrough-price-font-weight: 600;
-        --pricing-guest-primary-line-qualifier-font-size: 16px;
-        --pricing-guest-primary-line-qualifier-line-height: 20px;
 
         h3 {
             margin-right: 5px;
@@ -247,5 +281,56 @@
         display: flex;
         flex-wrap: nowrap;
         justify-content: space-between;
+    }
+}
+
+.stay-reserve-teaser {
+    padding-left: 24px;
+    padding-right: 24px;
+    position: fixed;
+    bottom: 0%;
+    left: 0%;
+    width: 100%;
+    background: white;
+    height: 80px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+
+    transition: bottom 1.2s ease;
+
+    &.expanded {
+        bottom: -30%;
+    }
+
+    .about {
+        display: flex;
+        flex-direction: column;
+        .row {
+            display: flex;
+            gap: 0.2rem;
+            p {
+                align-self: flex-end;
+            }
+        }
+
+        .date {
+            text-decoration: underline;
+            font-weight: 600;
+        }
+    }
+    .reserve {
+        border-radius: 8px;
+        border-width: 1px;
+        border-style: solid;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        padding-left: 24px;
+        padding-right: 24px;
+        transition: box-shadow 0.2s ease, transform 0.1s ease;
+        border: none;
+        background: $brand-gradient;
+        color: white;
+        font-family: 'Cereal-Medium';
     }
 }

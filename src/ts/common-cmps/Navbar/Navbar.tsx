@@ -9,18 +9,10 @@ import { useNavigate } from 'react-router-dom'
 interface Props {}
 
 export default function Navbar() {
-    const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 750)
+    const isMobile = useSelector((storeState: any) => storeState.appModule.isMobile)
     const searchBy: ISearchBy = useSelector((storeState: any) => storeState.stayModule.searchBy)
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        function handleResize() {
-            setIsMobile(window.innerWidth <= 750)
-        }
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
 
     function updateSearchBy(searchBy: ISearchBy): void {
         setSearchBy(searchBy)

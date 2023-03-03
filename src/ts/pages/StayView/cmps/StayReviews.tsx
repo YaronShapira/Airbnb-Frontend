@@ -4,6 +4,7 @@ import { IStay } from '../../../interfaces/stay-interface'
 import { stayService } from '../../../services/stays.service'
 import StayReviewBar from './StayReviewBar'
 import StayReview from './StayReview'
+import { useSelector } from 'react-redux'
 
 interface Props {
     stay: IStay
@@ -11,17 +12,9 @@ interface Props {
 
 export default function StayReviews({ stay }: Props) {
     const [pagination, setPagination] = useState(5)
-    const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 750)
+    const isMobile = useSelector((storeState: any) => storeState.appModule.isMobile)
 
     const rating = stayService.getStayRating(stay)
-
-    useEffect(() => {
-        function handleResize() {
-            setIsMobile(window.innerWidth <= 750)
-        }
-        window.addEventListener('resize', handleResize)
-        return () => window.removeEventListener('resize', handleResize)
-    }, [])
 
     function onShowMore() {
         setPagination(prev => prev + 5)
@@ -65,6 +58,11 @@ export default function StayReviews({ stay }: Props) {
                     {pagination < stay.reviews.length && (
                         <button className='show-more' onClick={onShowMore}>
                             Show more
+                        </button>
+                    )}
+                    {pagination >= stay.reviews.length && (
+                        <button className='show-more' onClick={() => setPagination(5)}>
+                            Show less
                         </button>
                     )}
                 </div>

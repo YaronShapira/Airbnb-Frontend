@@ -6,7 +6,6 @@ interface Props {
 }
 
 export default function StayReview({ review }: Props) {
-    console.log(review)
 
     return (
         <div className='stay-review'>

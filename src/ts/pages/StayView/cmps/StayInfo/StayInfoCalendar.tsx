@@ -1,9 +1,7 @@
 import Calendar from '../../../../common-cmps/Calendar'
 
 export default function StayInfoCalendar() {
-    function onCalendarChange(dates: any) {
-        console.log(dates)
-    }
+    function onCalendarChange(dates: any) {}
 
     return (
         <div className='stay-info-calendar'>

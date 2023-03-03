@@ -17,18 +17,22 @@
     @media screen and (max-width: 1000px) {
         $mobile-calendar-width: 250px;
 
+        .rdrCalendarWrapper.rdrDateRangeWrapper {
+            width: $mobile-calendar-width !important;
+        }
+
         .rdrDefinedRangesWrapper {
             display: none;
         }
 
         .rdrMonthAndYearWrapper {
-            width: $mobile-calendar-width;
+            width: $mobile-calendar-width !important;
         }
         .rdrMonths.rdrMonthsVertical {
-            width: $mobile-calendar-width;
+            width: $mobile-calendar-width !important;
 
             .rdrMonth {
-                width: $mobile-calendar-width;
+                width: $mobile-calendar-width !important;
             }
         }
     }

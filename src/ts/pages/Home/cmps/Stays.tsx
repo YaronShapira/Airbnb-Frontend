@@ -25,7 +25,6 @@ export default function Stays({ stays, getStays, onStay }: Props) {
         )
 
         if (firstSkeletonRef.current) {
-            // console.log('OBSERVING')
 
             observer.observe(firstSkeletonRef.current)
         }
