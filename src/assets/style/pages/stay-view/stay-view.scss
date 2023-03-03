@@ -3,9 +3,38 @@
         display: grid;
         grid-template-columns: 1.75fr 1fr;
         gap: 8%;
+
+        @media screen and (max-width: $mobile-size) {
+            display: flex;
+            flex-direction: column;
+        }
     }
     .border-bottom {
         border-bottom: 1px solid #e5e5e5;
+    }
+
+    .heading {
+        @media screen and (max-width: $mobile-size) {
+            display: flex;
+            flex-direction: column;
+
+            .stay-gallery {
+                order: -1;
+                margin-bottom: 0;
+                display: block;
+                img {
+                    border-radius: 0px;
+                }
+                .grid {
+                    display: none;
+                }
+            }
+            .stay-header {
+                margin-left: var(--layout-padding);
+                margin-right: var(--layout-padding);
+                border-bottom: 1px solid #e5e5e5;
+            }
+        }
     }
 }
 @mixin stay-info-layout-padding {

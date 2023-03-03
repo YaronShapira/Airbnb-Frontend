@@ -4,6 +4,11 @@
     .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+
+        @media screen and (max-width: $mobile-size) {
+            grid-template-columns: repeat(1, 1fr);
+            gap: 3rem;
+        }
     }
 
     h3 {

@@ -13,4 +13,43 @@
     .rdrMonth {
         width: 400px !important;
     }
+
+    @media screen and (max-width: 1000px) {
+        $mobile-calendar-width: 250px;
+
+        .rdrDefinedRangesWrapper {
+            display: none;
+        }
+
+        .rdrMonthAndYearWrapper {
+            width: $mobile-calendar-width;
+        }
+        .rdrMonths.rdrMonthsVertical {
+            width: $mobile-calendar-width;
+
+            .rdrMonth {
+                width: $mobile-calendar-width;
+            }
+        }
+    }
+    @media screen and (min-width: 1000px) {
+        $mobile-calendar-width: 450px;
+
+        .rdrMonthAndYearWrapper {
+            width: $mobile-calendar-width;
+        }
+        .rdrMonths.rdrMonthsVertical {
+            width: $mobile-calendar-width;
+
+            .rdrMonth {
+                width: $mobile-calendar-width;
+            }
+        }
+    }
+    @media screen and (max-width: $mobile-size) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }

@@ -20,11 +20,31 @@
         grid-template-columns: repeat(2, 1fr);
         margin-bottom: 24px;
         gap: 16px 0px;
+
+        @media screen and (max-width: $mobile-size) {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 
     .reviews {
         margin-top: 2rem;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+
+        @media screen and (max-width: $tablet-size) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .show-more {
+            margin-top: 24px;
+            border-radius: 8px;
+            border-width: 1px;
+            border-style: solid;
+            transition: box-shadow 0.2s ease, transform 0.1s ease;
+            border-color: #222222;
+            background: white;
+            padding: 13px 23px;
+            font-family: 'Cereal-Medium';
+        }
     }
 }

@@ -14,6 +14,10 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 16px 50px;
 
+        @media screen and (max-width: $tablet-size) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
         .offering {
         }
     }
@@ -27,6 +31,10 @@
         background: white;
         padding: 13px 23px;
         font-family: 'Cereal-Medium';
+
+        @media screen and (max-width: $mobile-size) {
+            width: 100%;
+        }
 
         &:hover {
             border-color: black;

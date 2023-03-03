@@ -23,4 +23,8 @@
         height: 56px;
         border-radius: 50%;
     }
+
+    @media screen and (max-width: $mobile-size) {
+        padding-top: 24px;
+    }
 }

@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { AiFillStar } from 'react-icons/ai'
 import { IStay } from '../../../interfaces/stay-interface'
 import { stayService } from '../../../services/stays.service'
@@ -9,7 +10,24 @@ interface Props {
 }
 
 export default function StayReviews({ stay }: Props) {
+    const [pagination, setPagination] = useState(5)
+    const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 750)
+
     const rating = stayService.getStayRating(stay)
+
+    useEffect(() => {
+        function handleResize() {
+            setIsMobile(window.innerWidth <= 750)
+        }
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
+    function onShowMore() {
+        setPagination(prev => prev + 5)
+    }
+
+    const mobileReviews = stay.reviews.slice(0, pagination)
 
     const cleanlinessRating = stayService.getStayNicheRating(stay, 'cleanliness')
     const accuracyRating = stayService.getStayNicheRating(stay, 'accuracy')
@@ -32,11 +50,25 @@ export default function StayReviews({ stay }: Props) {
                 <StayReviewBar name={'Check-in'} rating={checkInRating} />
                 <StayReviewBar name={'Value'} rating={valueRating} />
             </div>
-            <div className='reviews'>
-                {stay.reviews.map((review, idx) => {
-                    return <StayReview review={review} key={idx} />
-                })}
-            </div>
+            {!isMobile && (
+                <div className='reviews'>
+                    {stay.reviews.map((review, idx) => {
+                        return <StayReview review={review} key={idx} />
+                    })}
+                </div>
+            )}
+            {isMobile && (
+                <div className='reviews'>
+                    {mobileReviews.map((review, idx) => {
+                        return <StayReview review={review} key={idx} />
+                    })}
+                    {pagination < stay.reviews.length && (
+                        <button className='show-more' onClick={onShowMore}>
+                            Show more
+                        </button>
+                    )}
+                </div>
+            )}
         </div>
     )
 }

@@ -22,12 +22,6 @@
 }
 .stay-view-layout {
     --layout-padding: 275px;
-    @media screen and (max-width: 1400px) {
-        --layout-padding: 2.5rem;
-    }
-    @media screen and (max-width: $mobile-size) {
-        --layout-padding: 24px;
-    }
 
     display: grid;
     grid-template-columns:
@@ -40,5 +34,17 @@
     .full-bleed {
         width: 100%;
         grid-column: 1 / 4;
+    }
+
+    @media screen and (max-width: $tablet-size) {
+        --layout-padding: 40px;
+
+        grid-template-columns:
+            var(--layout-padding)
+            1fr
+            var(--layout-padding);
+    }
+    @media screen and (max-width: $mobile-size) {
+        --layout-padding: 24px;
     }
 }
