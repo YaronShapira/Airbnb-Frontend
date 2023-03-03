@@ -103,9 +103,8 @@ function _searchStays(stays: IStay[], searchBy: ISearchBy) {
     if (utilService.isObjectEmpty(searchBy)) return stays
 
     let filteredStays = stays
-    filteredStays = stays.filter(
-        (stay: IStay) =>
-            stay.stayDetails.guests > searchBy.adults + searchBy.children + searchBy.infants + searchBy.pets
+    filteredStays = stays.filter((stay: IStay) => 
+       stay.stayDetails.guests > +searchBy.adults + +searchBy.children + +searchBy.infants + +searchBy.pets
     )
     if (searchBy.destination && searchBy.destination !== "i'm flexible") {
         filteredStays = stays.filter((stay: IStay) => stay.loc.destination.toLowerCase().includes(searchBy.destination))

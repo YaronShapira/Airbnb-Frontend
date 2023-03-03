@@ -56,7 +56,6 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy,
                 break
         }
     }
-    console.log('searchBy:', searchBy)
 
     const moduleMap: ModuleMap = {
         searchLocation: (

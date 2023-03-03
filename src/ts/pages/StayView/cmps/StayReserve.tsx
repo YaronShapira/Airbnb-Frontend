@@ -143,7 +143,9 @@ export default function StayReserve({ stay, searchBy }: Props) {
                 <p className='disclaimer'>You won't be charged yet</p>
                 <div className='pricing-summary'>
                     <div className='row'>
-                        <p>${calculateStayPricePerNight()} x 3 nights</p>
+                        <p>
+                            ${calculateStayPricePerNight()} x {calculateStayNumOfDates()} nights
+                        </p>
                         <p>${stayPrice}</p>
                     </div>
                     <div className='row'>

@@ -5,7 +5,6 @@ export const SET_SEARCH_BY = 'SET_SEARCH_BY'
 const initialState = {
     searchBy: stayService.getSearchByFromParams(),
 }
-console.log('initialState:', initialState)
 
 export function stayReducer(state = initialState, action = {}) {
     switch (action.type) {

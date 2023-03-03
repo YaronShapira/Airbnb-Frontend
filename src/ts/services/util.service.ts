@@ -112,7 +112,6 @@ function getQueryParams(url = null) {
     let newObj: any = {}
     for (const [key, value] of paramsObj) {
         newObj[snakeToCamel(key)] = value
-        console.log(snakeToCamel(key))
     }
     return newObj
 }

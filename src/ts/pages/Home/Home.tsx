@@ -64,8 +64,8 @@ export default function Home() {
         <div className='main-layout'>
             <Navbar />
             <Filters onFilter={onGetNewStays} filterBy={filterBy} setFilterBy={setFilterBy} />
-            {stays.length && <Stays stays={stays} getStays={getStays} onStay={onStay} />}
-            {!stays.length && <NoStaysMessage onRemoveFilter={onRemoveFilter} />}
+            {stays.length > 0 && <Stays stays={stays} getStays={getStays} onStay={onStay} />}
+            {stays.length <= 0 && <NoStaysMessage onRemoveFilter={onRemoveFilter} />}
         </div>
     )
 }
