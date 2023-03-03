@@ -9,8 +9,10 @@ export default function StaySkeletonView() {
     return (
         <div className='stay-view-layout stay-skeleton-view'>
             <Navbar />
-            <StaySkeletonHeader />
-            <StaySkeletonGallery />
+            <div className='heading'>
+                <StaySkeletonHeader />
+                <StaySkeletonGallery />
+            </div>
             <div className='stay-view-separator'>
                 <StaySkeletonInfoHeader />
                 <StaySkeletonReserve />

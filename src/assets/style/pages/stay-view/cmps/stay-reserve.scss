@@ -7,6 +7,9 @@
     line-height: 20px;
     height: fit-content;
     position: relative;
+    position: sticky;
+    top: 48px;
+    margin-bottom: 48px;
 
     transition: bottom 0.7s ease;
 
@@ -28,6 +31,8 @@
     }
 
     @media screen and (max-width: $mobile-size) {
+        top: unset;
+        margin-bottom: 0;
         position: fixed;
         bottom: -50%;
         border-radius: 0%;
@@ -285,6 +290,7 @@
 }
 
 .stay-reserve-teaser {
+    border-top: 1px solid rgb(221, 221, 221);
     padding-left: 24px;
     padding-right: 24px;
     position: fixed;

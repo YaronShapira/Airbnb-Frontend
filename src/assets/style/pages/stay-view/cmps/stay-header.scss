@@ -1,6 +1,13 @@
 .stay-header {
     padding-top: 24px;
     padding-bottom: 24px;
+
+    @media screen and (max-width: $mobile-size) {
+        margin-left: var(--layout-padding);
+        margin-right: var(--layout-padding);
+        border-bottom: 1px solid #e5e5e5;
+    }
+
     .underline {
         text-decoration: underline;
     }
@@ -13,7 +20,6 @@
     .row {
         margin-top: 12px;
         display: flex;
-        align-items: center;
         justify-content: space-between;
         @media screen and (max-width: $mobile-size) {
             flex-direction: column;
