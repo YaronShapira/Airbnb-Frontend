@@ -10,7 +10,6 @@ import Filters from './cmps/Filters'
 import Navbar from '../../common-cmps/Navbar/Navbar'
 import Stays from './cmps/Stays'
 import StaysMapListings from './cmps/StaysMapListings'
-import { useSelector } from 'react-redux'
 import { ISearchBy } from '../../interfaces/search-by-interface'
 import { setSearchBy } from '../../store/stay/stay.action'
 

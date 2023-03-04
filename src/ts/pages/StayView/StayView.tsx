@@ -76,7 +76,6 @@ export default function StayView() {
         }
         setIsReserving(false)
         setIsReserved(true)
-        console.log('stay.takenDates:', (stay as IStay).takenDates)
     }
     if (stay.type === 'skeleton') return <StaySkeletonView />
     return (
