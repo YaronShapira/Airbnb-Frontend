@@ -7,14 +7,16 @@ import { useSelector } from 'react-redux'
 import Calendar from '../../../common-cmps/Calendar'
 import SearchGuests from '../../Home/cmps/SearchGuests'
 import useOutsideAlerter from '../../../hooks/useOutsideAlerter'
+import Loader from '../../../common-cmps/Loader'
 
 const PRICE_INC_PER_PERSON_PERCENT = 1.05
 interface Props {
     stay: IStay
     searchBy: ISearchBy
     onReserve: () => void
+    isReserving: boolean
 }
-export default function StayReserve({ stay, searchBy, onReserve }: Props) {
+export default function StayReserve({ stay, searchBy, onReserve, isReserving }: Props) {
     const isMobile = useSelector((storeState: any) => storeState.appModule.isMobile)
     const [isExpandedMobile, setIsExpandedMobile] = useState<boolean>(false)
     const [stayPrice, setStayPrice] = useState<number>(0)
@@ -100,7 +102,12 @@ export default function StayReserve({ stay, searchBy, onReserve }: Props) {
                 )}
                 {isCalendarOpen && (
                     <div className='calendar-wrapper' ref={calendarWrapperRef}>
-                        <Calendar startDate={new Date()} endDate={new Date()} onChange={onCalendarChange} takenDates={stay.takenDates}/>
+                        <Calendar
+                            startDate={new Date(searchBy.checkIn)}
+                            endDate={new Date(searchBy.checkOut)}
+                            onChange={onCalendarChange}
+                            takenDates={stay.takenDates}
+                        />
                         <button className='close' onClick={() => setIsCalendarOpen(false)}>
                             Close
                         </button>
@@ -141,7 +148,7 @@ export default function StayReserve({ stay, searchBy, onReserve }: Props) {
                     </div>
                 )}
                 <button className='reserve-btn' onClick={onReserve}>
-                    Reserve
+                    {isReserving ? <Loader /> : 'Reserve'}
                 </button>
                 <p className='disclaimer'>You won't be charged yet</p>
                 <div className='pricing-summary'>

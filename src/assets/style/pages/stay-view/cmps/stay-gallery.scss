@@ -3,6 +3,7 @@
     margin-bottom: 48px;
 
     img {
+        max-height: 541px;
         height: 100%;
         width: 100%;
         object-fit: cover;
@@ -17,6 +18,7 @@
     gap: 0.5rem;
 
     .grid {
+        overflow: hidden;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 0.5rem;

@@ -17,9 +17,12 @@ import StayHost from './cmps/StayHost'
 import StayThingsToKnow from './cmps/StayThingsToKnow'
 import StayFooter from './cmps/StayFooter'
 import StaySkeletonView from './cmps/StaySkeletonView/StaySkeletonView'
+import ReservationComplete from './cmps/ReservationComplete'
 
 export default function StayView() {
     const [stay, setStay] = useState<IStay | ISkeletonStay>(getSkeletonStayView())
+    const [isReserving, setIsReserving] = useState<boolean>(false)
+    const [isReserved, setIsReserved] = useState<boolean>(true)
     const searchBy: ISearchBy = useSelector((storeState: any) => storeState.stayModule.searchBy)
     const { id } = useParams()
     const navigate = useNavigate()
@@ -59,30 +62,42 @@ export default function StayView() {
     }
 
     async function onReserve() {
+        setIsReserving(true)
         ;(stay as IStay).takenDates.push(...stayService.getDatesArray(searchBy.checkIn, searchBy.checkOut))
         try {
             await stayService.saveStay(stay as IStay)
         } catch (err) {
             console.error(err)
         }
+        setIsReserving(false)
+        setIsReserved(true)
+        console.log('stay.takenDates:', (stay as IStay).takenDates)
     }
     if (stay.type === 'skeleton') return <StaySkeletonView />
     return (
-        <div className='stay-view-layout'>
-            <Navbar />
-            <div className='heading'>
-                <StayHeader stay={stay as IStay} />
-                <StayGallery stay={stay as IStay} />
+        <>
+            <div className='stay-view-layout'>
+                <Navbar />
+                <div className='heading'>
+                    <StayHeader stay={stay as IStay} />
+                    <StayGallery stay={stay as IStay} />
+                </div>
+                <div className='stay-view-separator'>
+                    <StayInfo stay={stay as IStay} />
+                    <StayReserve
+                        stay={stay as IStay}
+                        searchBy={searchBy}
+                        onReserve={onReserve}
+                        isReserving={isReserving}
+                    />
+                </div>
+                <StayReviews stay={stay as IStay} />
+                <StayMap stay={stay as IStay} />
+                <StayHost stay={stay as IStay} />
+                <StayThingsToKnow />
+                <StayFooter />
             </div>
-            <div className='stay-view-separator'>
-                <StayInfo stay={stay as IStay} />
-                <StayReserve stay={stay as IStay} searchBy={searchBy} onReserve={onReserve} />
-            </div>
-            <StayReviews stay={stay as IStay} />
-            <StayMap stay={stay as IStay} />
-            <StayHost stay={stay as IStay} />
-            <StayThingsToKnow />
-            <StayFooter />
-        </div>
+            <ReservationComplete stay={stay as IStay} isReserved={isReserved} setIsReserved={setIsReserved} />
+        </>
     )
 }

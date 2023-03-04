@@ -21,7 +21,10 @@ export default function Calendar({ startDate, endDate, onChange, takenDates }: P
         key: 'selection',
     }
 
-    const takenDatesFormatted = useMemo(() => takenDates.map((date: any) => parseISO(date)), [takenDates])
+    const takenDatesFormatted = useMemo(
+        () => takenDates.map((date: any) => parseISO(JSON.parse(JSON.stringify(date)))),
+        [takenDates]
+    )
 
     function handleCalendarSelect(ranges: any) {
         setCalendarDates({ startDate: ranges.selection.startDate, endDate: ranges.selection.endDate })

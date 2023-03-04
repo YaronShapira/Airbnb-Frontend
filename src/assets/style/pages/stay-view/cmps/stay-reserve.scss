@@ -224,6 +224,10 @@
         color: white;
         font-family: 'Cereal-Medium';
         width: 100%;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .disclaimer {
         -webkit-box-direction: normal;
