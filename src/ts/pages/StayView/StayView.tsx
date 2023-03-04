@@ -22,7 +22,8 @@ import ReservationComplete from './cmps/ReservationComplete'
 export default function StayView() {
     const [stay, setStay] = useState<IStay | ISkeletonStay>(getSkeletonStayView())
     const [isReserving, setIsReserving] = useState<boolean>(false)
-    const [isReserved, setIsReserved] = useState<boolean>(true)
+    const [isReserved, setIsReserved] = useState<boolean>(false)
+    const [isDatesTaken, setIsDatesTaken] = useState<boolean>(false)
     const searchBy: ISearchBy = useSelector((storeState: any) => storeState.stayModule.searchBy)
     const { id } = useParams()
     const navigate = useNavigate()
@@ -62,6 +63,10 @@ export default function StayView() {
     }
 
     async function onReserve() {
+        if (!stayService.validateDateRange(searchBy.checkIn, searchBy.checkOut, (stay as IStay).takenDates)) {
+            setIsDatesTaken(true)
+            return
+        }
         setIsReserving(true)
         ;(stay as IStay).takenDates.push(...stayService.getDatesArray(searchBy.checkIn, searchBy.checkOut))
         try {
@@ -89,6 +94,8 @@ export default function StayView() {
                         searchBy={searchBy}
                         onReserve={onReserve}
                         isReserving={isReserving}
+                        isDatesTaken={isDatesTaken}
+                        setIsDatesTaken={setIsDatesTaken}
                     />
                 </div>
                 <StayReviews stay={stay as IStay} />

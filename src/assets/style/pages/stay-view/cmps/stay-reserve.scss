@@ -151,20 +151,29 @@
         border-radius: 8px;
         position: relative;
 
+        border-color: rgb(176, 176, 176);
+        &.taken {
+            border-color: #f32013;
+            animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
         .dates {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             border-radius: 8px 8px 0px 0px;
-            border: 1px solid rgb(176, 176, 176);
+            border: 1px solid #fff;
+            border-color: inherit;
 
             .date-pick {
                 position: relative;
             }
 
             .check-in {
-                border-right: 1px solid rgb(176, 176, 176);
-            }
-            .check-out {
+                border-right: 1px solid #fff;
+                border-color: inherit;
             }
         }
         .heading {
@@ -205,7 +214,8 @@
         }
         .guests {
             border-radius: 0px 0px 8px 8px;
-            border: 1px solid rgb(176, 176, 176);
+            border: 1px solid #fff;
+            border-color: inherit;
             border-top: none;
             position: relative;
         }
@@ -343,5 +353,28 @@
         background: $brand-gradient;
         color: white;
         font-family: 'Cereal-Medium';
+    }
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
     }
 }

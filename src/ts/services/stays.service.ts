@@ -28,6 +28,7 @@ export const stayService = {
     saveStay,
     generateRandomDateRange,
     formatDateRange,
+    validateDateRange,
 }
 
 _createStays()
@@ -213,4 +214,16 @@ function formatDateRange(startDate: Date, endDate: Date) {
     const startMonth = startDate.toLocaleString('default', { month: 'short' }) // Get short month name from start date
     const endMonth = endDate.toLocaleString('default', { month: 'short' }) // Get short month name from end date
     return `${startMonth} ${startDate.getDate()} - ${endMonth} ${endDate.getDate()}`
+}
+
+function validateDateRange(checkInDate: Date, checkOutDate: Date, takenDatesArray: Date[]): boolean {
+    for (const takenDate of takenDatesArray) {
+        const startDate = new Date(takenDate)
+        const endDate = new Date(takenDate)
+        endDate.setDate(endDate.getDate() + 1) // Add one day to get end date (since we want to exclude it from the range)
+        if (checkInDate < endDate && checkOutDate > startDate) {
+            return false // There is overlap, return false
+        }
+    }
+    return true // No overlap found, return true
 }

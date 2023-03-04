@@ -15,8 +15,10 @@ interface Props {
     searchBy: ISearchBy
     onReserve: () => void
     isReserving: boolean
+    isDatesTaken: boolean
+    setIsDatesTaken: React.Dispatch<React.SetStateAction<boolean>>
 }
-export default function StayReserve({ stay, searchBy, onReserve, isReserving }: Props) {
+export default function StayReserve({ stay, searchBy, onReserve, isReserving, isDatesTaken, setIsDatesTaken }: Props) {
     const isMobile = useSelector((storeState: any) => storeState.appModule.isMobile)
     const [isExpandedMobile, setIsExpandedMobile] = useState<boolean>(false)
     const [stayPrice, setStayPrice] = useState<number>(0)
@@ -66,6 +68,7 @@ export default function StayReserve({ stay, searchBy, onReserve, isReserving }: 
 
     function onCalendarChange(dates: any) {
         setSearchBy({ ...searchBy, checkIn: dates.startDate, checkOut: dates.endDate })
+        setIsDatesTaken(false)
     }
 
     function handleGuestsCounter(inc: number, searchByField: string) {
@@ -118,15 +121,7 @@ export default function StayReserve({ stay, searchBy, onReserve, isReserving }: 
                     <p>night</p>
                 </div>
 
-                {/* <div className='stay-reserve-teaser'>
-            <div className='pricing'>
-                <h3>${calculateStayPricePerNight()}</h3>
-                <p>night</p>
-            </div>
-            <button className='reserve-btn'>Reserve</button>
-        </div> */}
-
-                <div className='reserve-picker'>
+                <div className={`reserve-picker ${isDatesTaken ? 'taken' : ''}`}>
                     <div className='dates'>
                         <div className='date-pick check-in' onClick={() => setIsCalendarOpen(true)}>
                             <p className='heading'>Check-in</p>
