@@ -1,7 +1,6 @@
 {
     "name": "react-typescript",
     "version": "0.1.0",
-    "homepage": "https://yaronshapira.github.io/Airbnb-Frontend",
     "private": true,
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.5",

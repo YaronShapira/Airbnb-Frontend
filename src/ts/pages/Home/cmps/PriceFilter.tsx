@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BsDash } from 'react-icons/bs'
 import { IFilterBy } from '../../../interfaces/filter-by-interface'
 

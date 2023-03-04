@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { AiFillStar } from 'react-icons/ai'
 
 interface Props {
     firstSkeletonRef?: React.RefObject<HTMLDivElement>
@@ -11,6 +10,7 @@ export default function StaySkeleton({ firstSkeletonRef, onMount }: Props) {
         if (onMount) {
             onMount()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [firstSkeletonRef])
     return (
         <article className='stay-preview skeleton' ref={firstSkeletonRef}>

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/heading-has-content */
 export default function StaySkeletonInfoHeader() {
     return (
         <div className='stay-info-header'>
