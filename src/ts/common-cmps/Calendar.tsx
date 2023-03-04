@@ -1,23 +1,27 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { DateRangePicker } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 import useDidMountEffect from '../hooks/useDidMountEffect'
+import { parseISO } from 'date-fns'
 
 interface Props {
     startDate: Date
     endDate: Date
+    takenDates: Date[]
 
     onChange: (ranges: any) => void
 }
 
-export default function Calendar({ startDate, endDate, onChange }: Props) {
-    const [calendarDates, setCalendarDates] = useState({ startDate: new Date(), endDate: new Date() })
+export default function Calendar({ startDate, endDate, onChange, takenDates }: Props) {
+    const [calendarDates, setCalendarDates] = useState({ startDate, endDate })
     const selectionRange = {
         startDate: calendarDates.startDate,
         endDate: calendarDates.endDate,
         key: 'selection',
     }
+
+    const takenDatesFormatted = useMemo(() => takenDates.map((date: any) => parseISO(date)), [takenDates])
 
     function handleCalendarSelect(ranges: any) {
         setCalendarDates({ startDate: ranges.selection.startDate, endDate: ranges.selection.endDate })
@@ -36,6 +40,7 @@ export default function Calendar({ startDate, endDate, onChange }: Props) {
                 onChange={handleCalendarSelect}
                 showMonthAndYearPickers={false}
                 showDateDisplay={false}
+                disabledDates={takenDatesFormatted}
             />
         </section>
     )

@@ -1,20 +1,20 @@
 import { useState, useRef, useEffect } from 'react'
-import Calendar from '../../../common-cmps/Calendar'
-import SearchGuests from '../../Home/cmps/SearchGuests'
 import { ISearchBy } from '../../../interfaces/search-by-interface'
-import useOutsideAlerter from '../../../hooks/useOutsideAlerter'
 import { setSearchBy } from '../../../store/stay/stay.action'
 import { IStay } from '../../../interfaces/stay-interface'
 import { utilService } from '../../../services/util.service'
 import { useSelector } from 'react-redux'
-import { AiOutlineClose } from 'react-icons/ai'
+import Calendar from '../../../common-cmps/Calendar'
+import SearchGuests from '../../Home/cmps/SearchGuests'
+import useOutsideAlerter from '../../../hooks/useOutsideAlerter'
 
 const PRICE_INC_PER_PERSON_PERCENT = 1.05
 interface Props {
     stay: IStay
     searchBy: ISearchBy
+    onReserve: () => void
 }
-export default function StayReserve({ stay, searchBy }: Props) {
+export default function StayReserve({ stay, searchBy, onReserve }: Props) {
     const isMobile = useSelector((storeState: any) => storeState.appModule.isMobile)
     const [isExpandedMobile, setIsExpandedMobile] = useState<boolean>(false)
     const [stayPrice, setStayPrice] = useState<number>(0)
@@ -29,6 +29,7 @@ export default function StayReserve({ stay, searchBy }: Props) {
 
     useEffect(() => {
         calculateStayPrice()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchBy])
 
     function calculateStayPrice() {
@@ -99,7 +100,7 @@ export default function StayReserve({ stay, searchBy }: Props) {
                 )}
                 {isCalendarOpen && (
                     <div className='calendar-wrapper' ref={calendarWrapperRef}>
-                        <Calendar startDate={new Date()} endDate={new Date()} onChange={onCalendarChange} />
+                        <Calendar startDate={new Date()} endDate={new Date()} onChange={onCalendarChange} takenDates={stay.takenDates}/>
                         <button className='close' onClick={() => setIsCalendarOpen(false)}>
                             Close
                         </button>
@@ -139,7 +140,9 @@ export default function StayReserve({ stay, searchBy }: Props) {
                         <SearchGuests searchBy={searchBy} handleGuestsCounter={handleGuestsCounter} />
                     </div>
                 )}
-                <button className='reserve-btn'>Reserve</button>
+                <button className='reserve-btn' onClick={onReserve}>
+                    Reserve
+                </button>
                 <p className='disclaimer'>You won't be charged yet</p>
                 <div className='pricing-summary'>
                     <div className='row'>

@@ -23,12 +23,21 @@ export const stayService = {
     getStayNicheRating,
     getEmptySearchBy,
     getSearchByFromParams,
+    getAllStays,
+    getDatesArray,
+    saveStay,
+    generateRandomDateRange,
+    formatDateRange,
 }
 
 _createStays()
 
 async function query() {
     return await storageService.query(STORAGE_KEY)
+}
+
+async function saveStay(stay: IStay) {
+    return await storageService.put(STORAGE_KEY, stay)
 }
 
 async function getStays(idx: number = 0, filterBy: IFilterBy = getEmptyFilterBy(), searchBy: ISearchBy): Promise<any> {
@@ -40,6 +49,10 @@ async function getStays(idx: number = 0, filterBy: IFilterBy = getEmptyFilterBy(
     } catch (err) {
         throw err
     }
+}
+
+function getAllStays() {
+    return query()
 }
 
 async function getStay(_id: string) {
@@ -103,11 +116,21 @@ function _searchStays(stays: IStay[], searchBy: ISearchBy) {
     if (utilService.isObjectEmpty(searchBy)) return stays
 
     let filteredStays = stays
-    filteredStays = stays.filter((stay: IStay) => 
-       stay.stayDetails.guests > +searchBy.adults + +searchBy.children + +searchBy.infants + +searchBy.pets
+    filteredStays = stays.filter(
+        (stay: IStay) =>
+            stay.stayDetails.guests > +searchBy.adults + +searchBy.children + +searchBy.infants + +searchBy.pets
     )
     if (searchBy.destination && searchBy.destination !== "i'm flexible") {
-        filteredStays = stays.filter((stay: IStay) => stay.loc.destination.toLowerCase().includes(searchBy.destination))
+        filteredStays = filteredStays.filter((stay: IStay) =>
+            stay.loc.destination.toLowerCase().includes(searchBy.destination)
+        )
+    }
+    if (!utilService.isToday(searchBy.checkOut)) {
+        filteredStays = filteredStays.map(stay => {
+            stay.datesForPreview[0] = searchBy.checkIn
+            stay.datesForPreview[1] = searchBy.checkOut
+            return stay
+        })
     }
     return filteredStays
 }
@@ -160,7 +183,34 @@ function _makeStays() {
             utilService.getRandomItemFromArr(filterNames),
         ]
         stay.loc.destination = utilService.getRandomItemFromArr(destinations)
+        stay.takenDates = []
+        stay.datesForPreview = generateRandomDateRange()
         return stay
     })
     return stays
+}
+
+function getDatesArray(checkInDate: Date, checkOutDate: Date): Date[] {
+    const datesArray: Date[] = []
+    const currentDate = new Date(checkInDate)
+    while (currentDate <= checkOutDate) {
+        datesArray.push(new Date(currentDate))
+        currentDate.setDate(currentDate.getDate() + 1)
+    }
+    return datesArray
+}
+
+function generateRandomDateRange() {
+    const startDate = new Date()
+    startDate.setDate(startDate.getDate() + Math.floor(Math.random() * 180)) // Add random number of days (up to 6 months) to current date
+    const numDays = Math.floor(Math.random() * 7) + 2 // Generate a random number between 2 and 8
+    const endDate = new Date(startDate)
+    endDate.setDate(endDate.getDate() + numDays - 1) // Set end date based on start date and number of days
+    return [startDate, endDate]
+}
+
+function formatDateRange(startDate: Date, endDate: Date) {
+    const startMonth = startDate.toLocaleString('default', { month: 'short' }) // Get short month name from start date
+    const endMonth = endDate.toLocaleString('default', { month: 'short' }) // Get short month name from end date
+    return `${startMonth} ${startDate.getDate()} - ${endMonth} ${endDate.getDate()}`
 }

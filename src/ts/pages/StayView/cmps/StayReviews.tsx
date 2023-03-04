@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AiFillStar } from 'react-icons/ai'
 import { IStay } from '../../../interfaces/stay-interface'
 import { stayService } from '../../../services/stays.service'
+import { useSelector } from 'react-redux'
 import StayReviewBar from './StayReviewBar'
 import StayReview from './StayReview'
-import { useSelector } from 'react-redux'
 
 interface Props {
     stay: IStay

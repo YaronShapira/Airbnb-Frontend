@@ -1,6 +1,6 @@
 import { FiShare } from 'react-icons/fi'
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
-import { IStay, IStayReview } from '../../../interfaces/stay-interface'
+import { IStay } from '../../../interfaces/stay-interface'
 import { stayService } from '../../../services/stays.service'
 import { FaMedal } from 'react-icons/fa'
 

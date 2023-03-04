@@ -1,5 +1,3 @@
-import { BiSearch } from 'react-icons/bi'
-
 interface Props {
     onToggleSearch: () => void
     isSearchOpen: boolean

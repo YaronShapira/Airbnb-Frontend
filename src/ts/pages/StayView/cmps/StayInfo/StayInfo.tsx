@@ -20,7 +20,7 @@ export default function StayInfo({ stay }: Props) {
             <StayInfoSummary stay={stay} />
             <StayInfoSleep />
             <StayInfoOffering stay={stay} />
-            <StayInfoCalendar />
+            <StayInfoCalendar stay={stay} />
         </div>
     )
 }

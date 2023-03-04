@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ISearchBy } from '../../interfaces/search-by-interface'
-import PCNavbar from './PCNavbar'
-import MobileNavbar from './MobileNavbar'
 import { useSelector } from 'react-redux'
 import { setSearchBy } from '../../store/stay/stay.action'
 import { useNavigate } from 'react-router-dom'
-
-interface Props {}
+import PCNavbar from './PCNavbar'
+import MobileNavbar from './MobileNavbar'
 
 export default function Navbar() {
     const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false)
@@ -29,7 +27,7 @@ export default function Navbar() {
         setIsSearchOpen(false)
 
         navigate(
-            `/Airbnb-Frontend/?destination=${
+            `/?destination=${
                 searchBy.destination
             }&check-in=${searchBy.checkIn.getTime()}&check-out=${searchBy.checkOut.getTime()}&adults=${
                 searchBy.adults

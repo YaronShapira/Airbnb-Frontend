@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { BiChevronRight, BiChevronLeft } from 'react-icons/bi'
-import Filter from './Filter'
 import { stayService } from '../../../services/stays.service'
-import MoreFilters from './MoreFilters'
 import { IFilterBy } from '../../../interfaces/filter-by-interface'
+import Filter from './Filter'
+import MoreFilters from './MoreFilters'
 const moreFiltersIconSrc = 'https://res.cloudinary.com/yaronshapira-com/image/upload/v1676833536/Airbnb/temp_dc7cvq.svg'
 const filters = stayService.getFilters()
 
@@ -17,12 +17,6 @@ export default function Filters({ onFilter, filterBy, setFilterBy }: Props) {
     const [isFullyScrolledRight, setIsFullyScrolledRight] = useState<boolean>(false)
     const [isFullyScrolledLeft, setIsFullyScrolledLeft] = useState<boolean>(true)
     const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false)
-    // const [filterBy, setFilterBy] = useState<IFilterBy>({
-    //     selectedFilter: '',
-    //     minPrice: 20,
-    //     maxPrice: 1000,
-    //     type: { entirePlace: false, privateRoom: false, SharedRoom: false },
-    // })
 
     const filterPlacesRef = useRef<HTMLInputElement>(null)
 

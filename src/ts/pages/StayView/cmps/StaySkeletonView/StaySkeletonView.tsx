@@ -1,5 +1,4 @@
 import Navbar from '../../../../common-cmps/Navbar/Navbar'
-import StayInfoHeader from '../StayInfo/StayInfoHeader'
 import StaySkeletonGallery from './StaySkeletonGallery'
 import StaySkeletonHeader from './StaySkeletonHeader'
 import StaySkeletonInfoHeader from './StaySkeletonInfoHeader'

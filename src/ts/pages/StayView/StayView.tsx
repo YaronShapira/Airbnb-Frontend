@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { stayService } from '../../services/stays.service'
+import { utilService } from '../../services/util.service'
+import { ISkeletonStay, IStay } from '../../interfaces/stay-interface'
+import { ISearchBy } from '../../interfaces/search-by-interface'
+import { setSearchBy } from '../../store/stay/stay.action'
 import Navbar from '../../common-cmps/Navbar/Navbar'
 import StayHeader from './cmps/StayHeader'
 import StayGallery from './cmps/StayGallery'
@@ -12,11 +16,7 @@ import StayMap from './cmps/StayMap'
 import StayHost from './cmps/StayHost'
 import StayThingsToKnow from './cmps/StayThingsToKnow'
 import StayFooter from './cmps/StayFooter'
-import { utilService } from '../../services/util.service'
-import { ISkeletonStay, IStay } from '../../interfaces/stay-interface'
 import StaySkeletonView from './cmps/StaySkeletonView/StaySkeletonView'
-import { ISearchBy } from '../../interfaces/search-by-interface'
-import { setSearchBy } from '../../store/stay/stay.action'
 
 export default function StayView() {
     const [stay, setStay] = useState<IStay | ISkeletonStay>(getSkeletonStayView())
@@ -27,6 +27,7 @@ export default function StayView() {
     useEffect(() => {
         getStay()
         prepareSearchBy()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     function prepareSearchBy() {
@@ -44,10 +45,23 @@ export default function StayView() {
         try {
             if (id) {
                 const stay = await stayService.getStay(id)
+                if (!stay) {
+                    navigate('/')
+                }
                 setStay(stay)
             } else {
                 navigate('/')
             }
+        } catch (err) {
+            navigate('/')
+            console.error(err)
+        }
+    }
+
+    async function onReserve() {
+        ;(stay as IStay).takenDates.push(...stayService.getDatesArray(searchBy.checkIn, searchBy.checkOut))
+        try {
+            await stayService.saveStay(stay as IStay)
         } catch (err) {
             console.error(err)
         }
@@ -62,7 +76,7 @@ export default function StayView() {
             </div>
             <div className='stay-view-separator'>
                 <StayInfo stay={stay as IStay} />
-                <StayReserve stay={stay as IStay} searchBy={searchBy} />
+                <StayReserve stay={stay as IStay} searchBy={searchBy} onReserve={onReserve} />
             </div>
             <StayReviews stay={stay as IStay} />
             <StayMap stay={stay as IStay} />
@@ -72,11 +86,3 @@ export default function StayView() {
         </div>
     )
 }
-
-// add searchBy to redux
-// make everything accurate in stay listings
-// work on responsiveness of StayView
-// add different search teaser for StayView
-// work on plain search functionality
-// add show map
-// add search map

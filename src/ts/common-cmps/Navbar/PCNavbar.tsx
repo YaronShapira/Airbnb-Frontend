@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import AppLogo from './AppLogo'
 import SearchExpanded from '../../pages/Home/cmps/SearchExpanded'
 import SearchTeaser from '../../pages/Home/cmps/SearchTeaser'

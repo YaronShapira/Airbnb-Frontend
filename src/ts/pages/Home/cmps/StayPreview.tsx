@@ -1,11 +1,11 @@
 import { AiFillStar } from 'react-icons/ai'
 import ImgCarousel from './ImgCarousel'
-import { ISkeletonStay, IStay, IStayReview } from '../../../interfaces/stay-interface'
+import { IStay } from '../../../interfaces/stay-interface'
 import { stayService } from '../../../services/stays.service'
 
 interface Props {
     stay: IStay
-    onStay: (_id: string) => void
+    onStay: (_id: string, startDate: Date, endDate: Date) => void
 }
 
 export default function StayPreview({ stay, onStay }: Props) {
@@ -14,7 +14,10 @@ export default function StayPreview({ stay, onStay }: Props) {
     const rating = stayService.getStayRating(stay)
 
     return (
-        <article className='stay-preview' onClick={() => onStay(stay._id)}>
+        <article
+            className='stay-preview'
+            onClick={() => onStay(stay._id, stay.datesForPreview[0], stay.datesForPreview[1])}
+        >
             <ImgCarousel imgUrls={stay.imgUrls} />
             <div className='details'>
                 <div className='row'>
@@ -26,7 +29,9 @@ export default function StayPreview({ stay, onStay }: Props) {
                 </div>
 
                 <p className='type'>{stay.type}</p>
-                <p className='available'>Jul 22 - 29</p>
+                <p className='available'>
+                    {stayService.formatDateRange(new Date(stay.datesForPreview[0]), new Date(stay.datesForPreview[1]))}
+                </p>
                 <p className='price'>
                     ${stay.price} <span className='prefix'>night</span>
                 </p>

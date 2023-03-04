@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { ISearchBy } from '../../../interfaces/search-by-interface'
+import { AiOutlineClose } from 'react-icons/ai'
+import { BiSearch } from 'react-icons/bi'
 import SearchLocation from './SearchLocation'
 import SearchDatePicker from './SearchDatePicker'
 import SearchGuests from './SearchGuests'
-import { AiOutlineClose } from 'react-icons/ai'
-import { BiSearch } from 'react-icons/bi'
 
 interface Props {
     isSearchOpen: boolean
@@ -35,7 +35,6 @@ export default function SearchExpandedMobile({
     function handleGuestsCounter(inc: number, searchByField: string) {
         const updatedField = +searchBy[searchByField] + inc
         updateSearchBy({ ...searchBy, [searchByField]: updatedField })
-        // updateSearchBy(prevSearchBy => ({ ...prevSearchBy, [searchByField]: updatedField }))
     }
 
     function guestsCountFormatted() {

@@ -6,7 +6,7 @@ import { IStay, ISkeletonStay } from '../../../interfaces/stay-interface'
 interface Props {
     stays: IStay[] | ISkeletonStay[]
     getStays: () => void
-    onStay: (_id: string) => void
+    onStay: (_id: string, startDate: Date, endDate: Date) => void
 }
 
 export default function Stays({ stays, getStays, onStay }: Props) {
@@ -25,7 +25,6 @@ export default function Stays({ stays, getStays, onStay }: Props) {
         )
 
         if (firstSkeletonRef.current) {
-
             observer.observe(firstSkeletonRef.current)
         }
 

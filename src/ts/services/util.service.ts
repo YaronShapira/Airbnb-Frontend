@@ -1,5 +1,4 @@
 import { ISearchBy } from '../interfaces/search-by-interface'
-import { stayService } from './stays.service'
 
 export const utilService = {
     makeId,
@@ -15,6 +14,7 @@ export const utilService = {
     guestsCountFormatted,
     getQueryParams,
     isObjectEmpty,
+    isToday,
 }
 
 export function makeId(length: number = 6): string {
@@ -122,4 +122,13 @@ function isObjectEmpty(obj: any) {
 
 function snakeToCamel(s: string): string {
     return s.replace(/([-_]\w)/g, g => g[1].toUpperCase())
+}
+
+function isToday(date: Date): boolean {
+    const today = new Date()
+    return (
+        date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear()
+    )
 }

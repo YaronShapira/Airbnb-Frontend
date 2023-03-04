@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { BiSearch } from 'react-icons/bi'
-import { HiSearch } from 'react-icons/hi'
 import DarkOverlay from '../../../common-cmps/Overlay/DarkOverlay'
 import SearchLocation from './SearchLocation'
 import SearchDatePicker from './SearchDatePicker'
@@ -27,7 +25,6 @@ export default function SearchExpanded({ isSearchOpen, onToggleSearch, searchBy,
     function handleGuestsCounter(inc: number, searchByField: string) {
         const updatedField = +searchBy[searchByField] + inc
         updateSearchBy({ ...searchBy, [searchByField]: updatedField })
-        // updateSearchBy(prevSearchBy => ({ ...prevSearchBy, [searchByField]: updatedField }))
     }
 
     function setSelectedModuleMiddleware(ev: React.MouseEvent<HTMLLabelElement, MouseEvent>, module: string) {

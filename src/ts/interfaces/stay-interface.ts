@@ -32,6 +32,8 @@ export interface IStay {
         beds: number
         bathrooms: number
     }
+    takenDates: Date[]
+    datesForPreview: Date[]
 }
 
 export interface IStayReview {

@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { ISearchBy } from '../../interfaces/search-by-interface'
 import { BiSearch } from 'react-icons/bi'
 import SearchExpandedMobile from '../../pages/Home/cmps/SearchExpandedMobile'

@@ -1,10 +1,10 @@
-import './assets/style/main.scss'
-import Home from './ts/pages/Home/Home'
-import { Route, Routes } from 'react-router-dom'
-import StayView from './ts/pages/StayView/StayView'
 import { useEffect } from 'react'
-import { setIsMobile } from './ts/store/app/app.action'
 import { useSelector } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
+import { setIsMobile } from './ts/store/app/app.action'
+import StayView from './ts/pages/StayView/StayView'
+import Home from './ts/pages/Home/Home'
+import './assets/style/main.scss'
 
 export default function App() {
     const isMobile = useSelector((storeState: any) => storeState.appModule.isMobile)
@@ -21,8 +21,8 @@ export default function App() {
     return (
         <div className='app'>
             <Routes>
-                <Route path='/Airbnb-Frontend' element={<Home />} />
-                <Route path='/Airbnb-Frontend/stays/:id' element={<StayView />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/stays/:id' element={<StayView />} />
             </Routes>
         </div>
     )

@@ -5,7 +5,7 @@ export default function AppLogo() {
     const navigate = useNavigate()
 
     function onLogo() {
-        navigate('/Airbnb-Frontend')
+        navigate('/')
     }
     return <img src={logo} alt='My Logo' className='logo' onClick={onLogo} />
 }
