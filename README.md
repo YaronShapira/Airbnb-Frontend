@@ -17,7 +17,7 @@ This project is an Airbnb clone, where users can search for and book rental prop
 
 This project is going to be built using the following technologies:
 
--   **Frontend:** React, Redux, React Router, React Dates Range
+-   **Frontend:** Typescript, React, Redux, React Router, React Dates Range, SASS
 
 ## Demo
 
