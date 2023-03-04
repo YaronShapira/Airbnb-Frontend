@@ -1,6 +1,6 @@
 .reservation-complete {
     position: fixed;
-    top: -50%;
+    top: -125%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
@@ -10,7 +10,7 @@
     max-width: 700px;
     display: flex;
     flex-direction: column;
-    transition: top 1s ease;
+    transition: top 1.2s ease;
 
     @media screen and (max-width: $mobile-size) {
         width: 90%;
