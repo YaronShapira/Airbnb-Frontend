@@ -1,8 +1,8 @@
 # Airbnb Clone
 
-[![Airbnb Image](https://res.cloudinary.com/yaronshapira-com/image/upload/v1677958151/Airbnb/Screenshot_2023-03-04_212853_qsa2u8.png)](airbnb-in-react.netlify.app)
+[![Airbnb Image](https://res.cloudinary.com/yaronshapira-com/image/upload/v1677958151/Airbnb/Screenshot_2023-03-04_212853_qsa2u8.png)](https://airbnb-in-react.netlify.app/)
 
-Check it out here: [airbnb-in-react.netlify.app](airbnb-in-react.netlify.app)
+Check it out here: [https://airbnb-in-react.netlify.app/](https://airbnb-in-react.netlify.app/)
 
 This project is an Airbnb clone, where users can search for and book rental properties.
 
@@ -21,7 +21,7 @@ This project is going to be built using the following technologies:
 
 ## Demo
 
-To see a live demo of the project, please visit [airbnb-in-react.netlify.app](airbnb-in-react.netlify.app). You can try out the search and booking features with sample properties.
+To see a live demo of the project, please visit [https://airbnb-in-react.netlify.app/](https://airbnb-in-react.netlify.app/). You can try out the search and booking features with sample properties.
 
 ## Screenshots
 
